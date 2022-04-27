@@ -35,3 +35,4 @@
 yarn-debug.log*
 .yarn-integrity
 employee-recognition-platform-1650969659.code-workspace
+Gemfile.lock
