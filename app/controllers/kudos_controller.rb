@@ -1,5 +1,5 @@
 class KudosController < ApplicationController
-  before_action :set_kudo, only: [:show, :edit, :update, :destroy]
+  before_action :set_kudo, only: %i[show edit update destroy]
 
   # GET /kudos
   def index
@@ -7,8 +7,7 @@ class KudosController < ApplicationController
   end
 
   # GET /kudos/1
-  def show
-  end
+  def show; end
 
   # GET /kudos/new
   def new
@@ -16,13 +15,12 @@ class KudosController < ApplicationController
   end
 
   # GET /kudos/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /kudos
   def create
     @kudo = Kudo.new(kudo_params)
-    @kudo.giver=current_employee
+    @kudo.giver = current_employee
 
     if @kudo.save
       redirect_to kudos_path, notice: 'Kudo was successfully created.'
@@ -47,13 +45,14 @@ class KudosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_kudo
-      @kudo = Kudo.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def kudo_params
-      params.require(:kudo).permit(:title, :context, :giver_id, :receiver_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_kudo
+    @kudo = Kudo.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def kudo_params
+    params.require(:kudo).permit(:title, :context, :giver_id, :receiver_id)
+  end
 end
