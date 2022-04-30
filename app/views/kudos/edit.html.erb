@@ -1,6 +1,9 @@
 <h1>Editing Kudo</h1>
 
+<% if @kudo.giver==current_employee%>
 <%= render 'form', kudo: @kudo %>
-
+<% else %>
+<% controller.redirect_to kudos_path%>
+<% end %>
 <%= link_to 'Show', @kudo %> |
 <%= link_to 'Back', kudos_path %>
