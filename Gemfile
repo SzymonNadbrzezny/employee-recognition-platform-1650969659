@@ -19,6 +19,7 @@ gem 'webpacker', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 
+
 group :development, :test do
   # Debugging tool
   gem 'pry-rails'
@@ -27,8 +28,15 @@ group :development, :test do
   gem 'rubocop-rspec', '2.8.0'
   # Tests
   gem 'rspec-rails', '~> 5.0.0'
-end
+  gem "factory_bot_rails"
 
+end
+group :test do
+  gem 'capybara'
+  gem 'net-smtp'
+  gem 'net-pop'
+  gem 'net-imap'
+end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
