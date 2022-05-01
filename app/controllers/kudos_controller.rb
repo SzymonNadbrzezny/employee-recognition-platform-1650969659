@@ -32,7 +32,7 @@ class KudosController < ApplicationController
   # PATCH/PUT /kudos/1
   def update
     if @kudo.update(kudo_params)
-      redirect_to @kudo, notice: 'Kudo was successfully updated.'
+      redirect_to kudos_path, notice: 'Kudo was successfully updated.'
     else
       render :edit
     end
