@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_04_27_201809) do
 
   create_table "kudos", force: :cascade do |t|
     t.string "title", null: false
-    t.text "context", null: false
+    t.text "content", null: false
     t.bigint "giver_id", null: false
     t.bigint "receiver_id", null: false
     t.datetime "created_at", precision: 6, null: false

@@ -26,9 +26,15 @@ group :development, :test do
   gem 'rubocop-rails', '2.13.2'
   gem 'rubocop-rspec', '2.8.0'
   # Tests
+  gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 5.0.0'
 end
-
+group :test do
+  gem 'capybara'
+  gem 'net-imap'
+  gem 'net-pop'
+  gem 'net-smtp'
+end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'

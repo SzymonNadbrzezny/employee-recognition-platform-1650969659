@@ -32,7 +32,7 @@ class KudosController < ApplicationController
   # PATCH/PUT /kudos/1
   def update
     if @kudo.update(kudo_params)
-      redirect_to @kudo, notice: 'Kudo was successfully updated.'
+      redirect_to kudos_path, notice: 'Kudo was successfully updated.'
     else
       render :edit
     end
@@ -53,6 +53,6 @@ class KudosController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def kudo_params
-    params.require(:kudo).permit(:title, :context, :giver_id, :receiver_id)
+    params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
   end
 end
