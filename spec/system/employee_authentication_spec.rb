@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Employee authentication actions' do
 	let(:employee) { build(:employee) }
 
-	it 'allows to create account, log out and log in' do
+	it 'allow to create account, log out and log in' do
 		visit root_path
 
 		click_link 'Sign up'
@@ -18,7 +18,6 @@ RSpec.describe 'Employee authentication actions' do
 
 		expect(page).to have_content 'You need to sign in or sign up before continuing.'
 
-		visit root_path
 		expect(page).to have_content 'Log in'
 		fill_in "Email",	with: employee.email
 		fill_in "Password",	with: employee.password
