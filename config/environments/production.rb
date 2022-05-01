@@ -98,8 +98,8 @@ Rails.application.configure do
   # The `database_resolver` class is used by the middleware to determine which
   # database is appropriate to use based on the time delay.
   #
-  # The `database_resolver_context` class is used by the middleware to set
-  # timestamps for the last write to the primary. The resolver uses the context
+  # The `database_resolver_content` class is used by the middleware to set
+  # timestamps for the last write to the primary. The resolver uses the content
   # class timestamps to determine how long to wait before reading from the
   # replica.
   #
@@ -109,5 +109,5 @@ Rails.application.configure do
   # these configuration options.
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
-  # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  # config.active_record.database_resolver_content = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 end
