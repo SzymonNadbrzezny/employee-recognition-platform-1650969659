@@ -9,3 +9,6 @@ bin/setup
 ```
 rails server
 ```
+### How to access the app on heroku
+1) Go to https://gludek-app.herokuapp.com
+2) Log in with credentials from seeds or create account.
