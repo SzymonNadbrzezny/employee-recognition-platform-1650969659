@@ -5,8 +5,9 @@ RSpec.describe 'Employee authentication actions' do
 
   it 'allow to create account, log out and log in' do
     visit root_path
-
+    within('.section') do
     click_link 'Sign up'
+    end
     fill_in 'Email',	with: employee.email
     fill_in 'Password',	with: employee.password
     fill_in 'Password confirmation',	with: employee.password
