@@ -1,29 +1,39 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Employee Recognition Platform</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<%= csrf_meta_tags %>
-		<%= csp_meta_tag %>
-
-		<%= stylesheet_link_tag 'application', media: 'all' %>
-		<%= javascript_pack_tag 'application' %>
-	</head>
-
-	<body>
-			<h4><%= link_to 'Company', root_path%></h4>
-			<p class="notice"><%= notice %></p>
-			 <p class="alert"><%= alert %></p>
-				<nav>
-					<h4>Navigation</h4>
-					
-					<ul><% if employee_signed_in? %>
-						<li><%= link_to 'Sign out', destroy_employee_session_path, method: :delete %></li>
-					<% end %>
-					</ul>
-			 	</nav>
-
-
-		<%= yield %>
-	</body>
+<html class="has-navbar-fixed-top">
+  <head>
+    <title>Employee Recognition Platform</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+  <body>
+    <nav class='navbar is-fixed-top is-primary'>
+      <div class='navbar-brand'>
+        <h4><%= link_to 'Company', root_path, class: 'navbar-item' %></h4>
+      </div>
+      <div class='navbar-menu'>
+        <div class='navbar-end'>
+          <% if employee_signed_in? %>
+            <%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:'navbar-item' %>
+          <% else %>
+            <%= link_to 'Sign in', destroy_employee_session_path, method: :delete, class:'navbar-item' %>
+            <%= link_to 'Sign up', destroy_employee_session_path, method: :delete, class:'navbar-item' %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+    <p class="notice"><%= notice %></p>
+    <p class="alert is-warning"><%= alert %></p>
+    <section class="section">
+      <div class="content">
+        <div class="container is-max-desktop">
+          <div class='box'>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
