@@ -9,23 +9,26 @@
     <%= javascript_pack_tag 'application' %>
   </head>
   <body>
-    <nav class='navbar is-fixed-top is-primary'>
+    <nav class='navbar is-fixed-top is-primary is-light has-shadow'>
       <div class='navbar-brand'>
-        <h4><%= link_to 'Company', root_path, class: 'navbar-item' %></h4>
+        <%= link_to 'Company', root_path, class: 'navbar-item' %>
       </div>
       <div class='navbar-menu'>
         <div class='navbar-end'>
           <% if employee_signed_in? %>
             <%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:'navbar-item' %>
           <% else %>
-            <%= link_to 'Sign in', destroy_employee_session_path, method: :delete, class:'navbar-item' %>
-            <%= link_to 'Sign up', destroy_employee_session_path, method: :delete, class:'navbar-item' %>
+            <%= link_to 'Sign in', new_employee_session_path, method: :delete, class:'navbar-item' %>
+            <%= link_to 'Sign up', new_employee_registration_path, method: :GET, class:'navbar-item' %>
           <% end %>
         </div>
       </div>
     </nav>
-    <p class="notice"><%= notice %></p>
-    <p class="alert is-warning"><%= alert %></p>
+	<% if notice %>
+    <p class=" notification notice"><%= notice %></p>
+	<% elsif alert%>
+    <p class="notification alert is-warning"><%= alert %></p>
+	<% end %>
     <section class="section">
       <div class="content">
         <div class="container is-max-desktop">
