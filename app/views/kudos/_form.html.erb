@@ -1,8 +1,7 @@
 <%= form_with(model: kudo) do |form| %>
   <% if kudo.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation notification is-warning">
       <h2><%= pluralize(kudo.errors.count, "error") %> prohibited this kudo from being saved:</h2>
-
       <ul>
         <% kudo.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,24 +9,25 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.label :title, class:'label' %>
+    <div class='control'>
+      <%= form.text_field :title, class:'input' %>
+    </div>
   </div>
-
   <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.label :content, class:'label' %>
+    <div class='control'>
+      <%= form.text_area :content, class:'textarea' %>
+    </div>
   </div>
-
-
   <div class="field">
-    <%= form.label :receiver_id %>
-    <%= form.collection_select :receiver_id, Employee.where.not(id: current_employee.id),:id,:email %>
+    <%= form.label :receiver_id, class:'label' %>
+    <div class='select is-primary'>
+      <%= form.collection_select :receiver_id, Employee.where.not(id: current_employee.id),:id,:email %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions container">
+    <%= form.submit class:'button is-primary' %>
   </div>
 <% end %>

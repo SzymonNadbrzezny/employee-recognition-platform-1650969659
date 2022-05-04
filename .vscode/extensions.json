@@ -1,0 +1,10 @@
+{
+	"recommendations": [
+		"jnbt.vscode-rufo",
+		"rebornix.ruby",
+		"hridoy.rails-snippets",
+		"wingrunr21.vscode-ruby",
+		"ms-vscode-remote.remote-wsl",
+		"aliariff.vscode-erb-beautify"
+	]
+}

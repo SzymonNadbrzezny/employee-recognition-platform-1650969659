@@ -1,24 +1,26 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @kudo.title %>
-</p>
-
-<p>
-  <strong>content:</strong>
-  <%= @kudo.content %>
-</p>
-
-<p>
-  <strong>Giver:</strong>
-  <%= @kudo.giver.email%>
-</p>
-
-<p>
-  <strong>Receiver:</strong>
-  <%= @kudo.receiver.email %>
-</p>
-
-<%= link_to 'Edit', edit_kudo_path(@kudo) %> |
-<%= link_to 'Back', kudos_path %>
+<div class='card'>
+  <div class='card-header has-background-primary'>
+    <div class='card-header-title'>
+      <%= @kudo.title %>
+    </div>
+  </div>
+  <div class='card-content has-background-primary-light'>
+    Content:
+    <div class='card-header-title'>
+      <%= @kudo.content %>
+    </div>
+    Receiver:
+    <div class='card-header-title'>
+      <%= @kudo.receiver.email %>
+    </div>
+    Giver:
+    <div class='card-header-title'>
+      <%= @kudo.giver.email%>
+    </div>
+  </div>
+</div>
+<div class='columns is-vcentered mt-1 has-text-centered'>
+<%= link_to 'Edit', edit_kudo_path(@kudo),class:'column' %>
+<%= link_to 'Back', kudos_path,class:'column' %>
+</div>
