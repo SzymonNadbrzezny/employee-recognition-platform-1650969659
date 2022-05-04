@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
+	<script src="https://kit.fontawesome.com/6ad44cd79d.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <nav class='navbar is-fixed-top is-primary is-light has-shadow'>
@@ -14,6 +15,15 @@
         <%= link_to 'Company', root_path, class: 'navbar-item' %>
       </div>
       <div class='navbar-menu'>
+	  	<div class='navbar-start'>
+		  <p class="buttons">
+  <a class="button is-primary is-small" href='https://github.com/Gludek/employee-recognition-platform-1650969659' alt='Link to github'>
+    <span class="icon">
+      <i class="fab fa-github"></i>
+    </span>
+    <span>GitHub</span>
+  </a>
+		  </div>
         <div class='navbar-end'>
           <% if employee_signed_in? %>
             <%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:'navbar-item' %>
