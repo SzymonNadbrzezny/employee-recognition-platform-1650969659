@@ -12,7 +12,11 @@
   <body>
     <nav class='navbar is-fixed-top is-primary is-light has-shadow'>
       <div class='navbar-brand'>
+      <% if current_controller?('admin') %>
+        <%= link_to 'Company', admins_dashboard_path, class: 'navbar-item' %>
+        <% else%>
         <%= link_to 'Company', root_path, class: 'navbar-item' %>
+        <% end%>
       </div>
       <div class='navbar-menu'>
         <div class='navbar-start'>
