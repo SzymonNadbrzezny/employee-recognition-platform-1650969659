@@ -1,4 +1,5 @@
 class KudosController < ApplicationController
+  before_action :authenticate_employee!
   before_action :set_kudo, only: %i[show edit update destroy]
 
   # GET /kudos
