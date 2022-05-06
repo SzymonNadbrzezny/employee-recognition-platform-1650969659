@@ -9,6 +9,8 @@
 1.upto(5) do |i|
 	Employee.create(email: "employee#{i}@test.com",password:"password")
 end
+Admin.create(email: "admin@test.com",password:"admintest")
+
 
 2.upto(5) do |i|
 Kudo.create!(title:" Seeds for employee#{i}@test.com", content: "smh",giver: Employee.find_by(email: 'employee1@test.com'), receiver: Employee.find_by(email: "employee#{i}@test.com"))
