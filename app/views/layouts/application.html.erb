@@ -7,7 +7,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
-	<script src="https://kit.fontawesome.com/6ad44cd79d.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/6ad44cd79d.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <nav class='navbar is-fixed-top is-primary is-light has-shadow'>
@@ -15,38 +15,46 @@
         <%= link_to 'Company', root_path, class: 'navbar-item' %>
       </div>
       <div class='navbar-menu'>
-	  	<div class='navbar-start'>
-		  <p class="buttons">
-  <a class="button is-primary is-small" href='https://github.com/Gludek/employee-recognition-platform-1650969659' alt='Link to github'>
-    <span class="icon">
-      <i class="fab fa-github"></i>
-    </span>
-    <span>GitHub</span>
-  </a>
-		  </div>
-        <div class='navbar-end'>
-          <% if employee_signed_in? %>
-            <%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:'navbar-item' %>
-          <% else %>
-            <%= link_to 'Sign in', new_employee_session_path, method: :delete, class:'navbar-item' %>
-            <%= link_to 'Sign up', new_employee_registration_path, method: :GET, class:'navbar-item' %>
-          <% end %>
-        </div>
-      </div>
-    </nav>
-	<% if notice %>
-    <p class=" notification notice"><%= notice %></p>
-	<% elsif alert%>
-    <p class="notification alert is-warning"><%= alert %></p>
-	<% end %>
-    <section class="section">
-      <div class="content">
-        <div class="container is-max-desktop">
-          <div class='box'>
-            <%= yield %>
+        <div class='navbar-start'>
+          <p class="buttons">
+            <a class="button is-primary is-small" href='https://github.com/Gludek/employee-recognition-platform-1650969659' alt='Link to github'>
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>GitHub</span>
+            </a>
+          </div>
+          <div class='navbar-end'>
+            <% if current_controller?('admin') %>
+              <%if admin_signed_in? %>
+                <%= link_to 'Sign out', destroy_admin_session_path, method: :delete, class:'navbar-item' %>
+              <% else %>
+                <%= link_to 'Sign in', new_admin_session_path, method: :delete, class:'navbar-item' %>
+              <% end %>
+            <% else %>
+              <% if employee_signed_in? %>
+                <%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:'navbar-item' %>
+              <% else %>
+                <%= link_to 'Sign in', new_employee_session_path, method: :delete, class:'navbar-item' %>
+                <%= link_to 'Sign up', new_employee_registration_path, method: :GET, class:'navbar-item' %>
+              <% end %>
+            <% end %>
           </div>
         </div>
-      </div>
-    </section>
-  </body>
-</html>
+      </nav>
+      <% if notice %>
+        <p class=" notification notice"><%= notice %></p>
+      <% elsif alert%>
+        <p class="notification alert is-warning"><%= alert %></p>
+      <% end %>
+      <section class="section">
+        <div class="content">
+          <div class="container is-max-desktop">
+            <div class='box'>
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </section>
+    </body>
+  </html>
