@@ -7,9 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 1.upto(5) do |i|
-	Employee.create(email: "employee#{i}@test.com",password:"password")
+	Employee.where(email: "employee#{i}@test.com").first_or_create!(password:"password")
 end
-Admin.create(email: "admin@test.com",password:"admintest")
+puts 'Admin account creation'
+Admin.where(email: "admin@test.com").first_or_create!(password:"admintest")
 
 
 2.upto(5) do |i|
