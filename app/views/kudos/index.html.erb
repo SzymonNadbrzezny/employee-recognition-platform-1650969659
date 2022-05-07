@@ -1,6 +1,4 @@
-
-
-<h1>Kudos</h1>
+<div class='title'>New Kudo</div>
 
 <table>
   <thead>
@@ -20,11 +18,11 @@
         <td><%= kudo.content %></td>
         <td><%= kudo.giver.email %></td>
         <td><%= kudo.receiver.email %></td>
-        <td><%= link_to 'Show', kudo %></td>
-        <% if kudo.giver==current_employee%>
-        <td><%= link_to 'Edit', edit_kudo_path(kudo) %></td>
-        <td><%= link_to 'Destroy', kudo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end%>
+        <td><%= link_to "Show", kudo %></td>
+        <% if kudo.giver == current_employee %>
+        <td><%= link_to "Edit", edit_kudo_path(kudo) %></td>
+        <td><%= link_to "Destroy", kudo, method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Kudo', new_kudo_path,class:'button is-primary' %>
+<%= link_to "New Kudo", new_kudo_path, class: "button is-primary" %>
