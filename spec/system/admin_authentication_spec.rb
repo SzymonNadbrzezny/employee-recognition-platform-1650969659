@@ -4,7 +4,7 @@ RSpec.describe 'Admin authentication actions' do
   let!(:admin) { create(:admin) }
 
   it 'allow to log in and log out' do
-    visit admin_session_path
+    visit admins_root_path
 
     expect(page).to have_content 'Log in'
     fill_in 'Email',	with: admin.email

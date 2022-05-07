@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html class="has-navbar-fixed-top">
   <head>
-    <title>Employee Recognition Platform</title>
+    <title>Employee Recognition Platform - Admin Panel</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_link_tag "admin-style" %>
+    <%= javascript_pack_tag "application" %>
     <script src="https://kit.fontawesome.com/6ad44cd79d.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <nav class='navbar is-fixed-top is-primary is-light has-shadow'>
       <div class='navbar-brand'>
-        <%= link_to 'Company', root_path, class: 'navbar-item' %>
+        <%= link_to "Company", admins_root_path, class: "navbar-item" %>
       </div>
       <div class='navbar-menu'>
         <div class='navbar-start'>
@@ -25,20 +25,19 @@
             </a>
           </div>
           <div class='navbar-end'>
-
-              <% if employee_signed_in? %>
-                <%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:'navbar-item' %>
+          
+              <% if admin_signed_in? %>
+              <%= link_to "Kudo list", admins_kudos_path, class: "navbar-item" %>
+                <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "navbar-item" %>
               <% else %>
-                <%= link_to 'Sign in', new_employee_session_path, method: :delete, class:'navbar-item' %>
-                <%= link_to 'Sign up', new_employee_registration_path, method: :GET, class:'navbar-item' %>
+                <%= link_to "Sign in", new_admin_session_path, method: :delete, class: "navbar-item" %>
               <% end %>
-
           </div>
         </div>
       </nav>
       <% if notice %>
         <p class=" notification notice"><%= notice %></p>
-      <% elsif alert%>
+      <% elsif alert %>
         <p class="notification alert is-warning"><%= alert %></p>
       <% end %>
       <section class="section">
