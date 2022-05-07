@@ -11,6 +11,7 @@ RSpec.describe 'Admin authentication actions' do
     fill_in 'Password',	with: admin.password
     click_button 'Log in'
     expect(page).to have_content 'Signed in successfully.'
+    expect(page).to have_content 'Admin Dashboard'
     click_link 'Sign out'
 
     expect(page).to have_content 'Signed out successfully.'

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Kudo handling' do
+RSpec.describe 'Kudo handling allows' do
   let!(:admin) { create(:admin) }
   let!(:kudo) { create(:kudo) }
 
@@ -8,7 +8,7 @@ RSpec.describe 'Kudo handling' do
     sign_in admin
   end
 
-  it 'user to perform CRUD operations around his kudos' do
+  it 'Admin to perform RD operations around kudos of employees' do
     visit admins_root_path
 
     within('.section') do

@@ -1,6 +1,6 @@
 module Admins
   class KudosController < AdminsController
-    before_action :set_kudo, only: %i[show destroy]
+    before_action :set_kudo, only: %i[show edit update destroy]
 
     # GET /kudos
     def index
