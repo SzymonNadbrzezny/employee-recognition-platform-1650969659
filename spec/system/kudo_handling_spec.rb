@@ -29,7 +29,7 @@ RSpec.describe 'Kudo handling' do
     expect(page).to have_content 'Kudo was successfully destroyed.'
   end
 
-  it 'checks if employeee has enough aviable cudos' do
+  it 'checks if employee has enough avaible kudos' do
     employee.number_of_avaible_kudos = 0
     visit root_path
     expect(page).to have_content('Avaible Kudos0')
