@@ -5,6 +5,7 @@ RSpec.describe 'Employee authentication actions' do
 
   it 'allow to create account, log out and log in' do
     visit root_path
+
     within('.section') do
       click_link 'Sign up'
     end
@@ -14,6 +15,7 @@ RSpec.describe 'Employee authentication actions' do
     click_button 'Sign up'
 
     expect(page).to have_content 'Welcome! You have signed up successfully.'
+    expect(page).to have_content 'Avaible Kudos10'
 
     click_link 'Sign out'
 
