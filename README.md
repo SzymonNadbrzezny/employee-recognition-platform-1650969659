@@ -15,4 +15,4 @@ rails server
 
 ### How to access the app on heroku as an admin
 1) Go to https://gludek-app.herokuapp.com/admins/
-2) Log in as `admin@test` with `admintest`.
+2) Use `admin@test` as email and `admintest` as password to log in.
