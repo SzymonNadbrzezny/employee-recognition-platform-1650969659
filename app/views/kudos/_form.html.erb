@@ -28,6 +28,6 @@
     </div>
   </div>
   <div class="actions container">
-    <%= form.submit class:'button is-primary' %>
+    <%= form.submit class:'button is-primary', onsubmit: current_employee.decrease_kudos(current_employee) %>
   </div>
 <% end %>
