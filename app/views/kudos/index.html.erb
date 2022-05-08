@@ -29,7 +29,7 @@
 </table>
 
 <br>
-<% if current_employee.number_of_avaible_kudos_greater_than_zero? %>
+<% if current_employee.number_of_avaible_kudos.positive? %>
 <%= link_to "New Kudo", new_kudo_path, class: "button is-primary" %>
 <% else %>
 <button class='button is-primary' disabled>New Kudo</button>
