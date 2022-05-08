@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   devise_for :employees, path: "employees"
   namespace :admins do
     resources :kudos
+    resources :employees
 
     root to: "pages#dashboard"
   end
