@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# == Route Map
+#
+
 Rails.application.routes.draw do
   resources :kudos
   devise_for :admins, path: "admins", controllers: {

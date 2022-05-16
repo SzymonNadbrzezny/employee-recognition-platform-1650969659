@@ -25,6 +25,7 @@ gem 'net-smtp'
 
 group :development, :test do
   # Debugging tool
+  gem 'annotate'
   gem 'pry-rails'
   gem 'rubocop', '1.25.1'
   gem 'rubocop-rails', '2.13.2'
