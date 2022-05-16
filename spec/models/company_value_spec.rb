@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: company_values
+#
+#  id         :bigint           not null, primary key
+#  title      :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  unique_titles  (title) UNIQUE
+#
 require 'rails_helper'
 
 RSpec.describe CompanyValue, type: :model do
