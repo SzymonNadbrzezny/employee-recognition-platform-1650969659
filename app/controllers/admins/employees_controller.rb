@@ -14,8 +14,6 @@ module Admins
 
     # DELETE /employees/1
     def destroy
-      @kudos = Kudo.where(['giver_id = ? or receiver_id = ?', @employee.id, @employee.id]).all
-      @kudos.each(&:destroy)
       @employee.destroy
       redirect_to admins_employees_url, notice: 'Employee was successfully destroyed.'
     end
