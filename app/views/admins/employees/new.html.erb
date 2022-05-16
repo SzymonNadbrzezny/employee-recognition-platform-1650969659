@@ -1,10 +1,6 @@
 <div class='title'>New employee</div>
 
-<% if current_employee.number_of_avaible_employees.positive?%>
 <%= render 'form', employee: @employee %>
-<% else %>
-<% controller.redirect_to employees_path, notice: "Za mała ilość dostępnych employee"%>
-<% end %>
 <div class='columns is-vcentered mt-1 has-text-centered'>
 <%= link_to 'Back', employees_path,class:'column' %>
 </div>
