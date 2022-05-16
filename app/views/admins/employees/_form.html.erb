@@ -1,4 +1,4 @@
-<%= form_with(model: [:admins,employee]) do |f| %>
+<%= form_with(scope: employee, url: admins_employee_path(@employee), method: :patch) do |f| %>
   <% if employee.errors.any? %>
     <div id="error_explanation notification is-warning">
       <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>

@@ -16,8 +16,3 @@ Admin.where(email: "admin@test.com").first_or_create!(password:"admintest")
 2.upto(5) do |i|
 Kudo.create!(title:" Seeds for employee#{i}@test.com", content: "smh",giver: Employee.find_by(email: 'employee1@test.com'), receiver: Employee.find_by(email: "employee#{i}@test.com"))
 end
-puts 'Company values creation'
-CompanyValue.where(title:"Honesty").first_or_create!
-CompanyValue.where(title:"Ownership").first_or_create!
-CompanyValue.where(title:"Accountability").first_or_create!
-CompanyValue.where(title:"Passion").first_or_create!
