@@ -8,12 +8,12 @@
     </tr>
   </thead>
   <tbody>
-    <% @company_values.each do |company_value| %>
+    <% company_values.each do |company_value| %>
       <tr>
         <td><%= company_value.title %></td>
         <td><%= company_value.created_at.strftime("%d/%m/%Y") %></td>
-        <td><%= link_to "Edit", edit_admins_company_value_path(company_value.id, @company_value) %></td>
-        <td><%= link_to "Destroy", admins_company_value_path(company_value.id, @company_value), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <td><%= link_to "Edit", edit_admins_company_value_path(company_value) %></td>
+        <td><%= link_to "Destroy", admins_company_value_path(company_value), method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
