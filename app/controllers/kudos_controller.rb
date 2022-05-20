@@ -1,6 +1,5 @@
 class KudosController < ApplicationController
   before_action :authenticate_employee!
-  before_action :set_kudo, only: %i[show edit update destroy]
 
   # GET /kudos
   def index
@@ -8,7 +7,9 @@ class KudosController < ApplicationController
   end
 
   # GET /kudos/1
-  def show; end
+  def show
+    current_kudo
+  end
 
   # GET /kudos/new
   def new
@@ -16,13 +17,15 @@ class KudosController < ApplicationController
   end
 
   # GET /kudos/1/edit
-  def edit; end
+  def edit
+    current_kudo
+  end
 
   # POST /kudos
   def create
     @kudo = Kudo.new(kudo_params)
     @kudo.giver = current_employee
-
+    current_employee.decrement(:number_of_avaible_kudos).save if current_employee.number_of_avaible_kudos.positive?
     if @kudo.save
       redirect_to kudos_path, notice: 'Kudo was successfully created.'
     else
@@ -32,6 +35,7 @@ class KudosController < ApplicationController
 
   # PATCH/PUT /kudos/1
   def update
+    current_kudo
     if @kudo.update(kudo_params)
       redirect_to kudos_path, notice: 'Kudo was successfully updated.'
     else
@@ -41,6 +45,7 @@ class KudosController < ApplicationController
 
   # DELETE /kudos/1
   def destroy
+    current_kudo
     @kudo.destroy
     redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
   end
@@ -48,7 +53,7 @@ class KudosController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_kudo
+  def current_kudo
     @kudo = Kudo.find(params[:id])
   end
 

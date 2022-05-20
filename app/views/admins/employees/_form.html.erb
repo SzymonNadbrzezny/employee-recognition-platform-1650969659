@@ -1,4 +1,4 @@
-<%= form_with(model: [:admins,employee]) do |f| %>
+<%= form_with(model: [:admins, employee]) do |f| %>
   <% if employee.errors.any? %>
     <div id="error_explanation notification is-warning">
       <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
@@ -12,27 +12,25 @@
   <div class="field">
     <%= f.label :email, class:'label' %>
     <div class='control'>
-     <%= f.email_field :email,value: employee.email, autofocus: true, autocomplete: "email",class:'input' %>
+      <%= f.email_field :email, value: employee.email, autofocus: true, autocomplete: "email", class:'input' %>
     </div>
   </div>
-    
   <div class="field">
     <%= f.label :number_of_avaible_kudos, class:'label' %>
     <div class='control'>
-    <%= f.number_field :number_of_avaible_kudos,value: employee.number_of_avaible_kudos, autofocus: true,class:'input'  %>
+      <%= f.number_field :number_of_avaible_kudos, value: employee.number_of_avaible_kudos, autofocus: true, class:'input'  %>
     </div>
   </div>
   <div class="field">
     <%= f.label :password, class:'label' %>
     <div class='help'>leave blank if you don't want to change it</div>
     <div class='control'>
-    <%= f.password_field :password, autocomplete: "new-password",class:'input' %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class:'input' %>
+      <% if @minimum_password_length %>
+        <br />
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
     </div>
-    
   </div>
   <div class="actions container">
     <%= f.submit 'Update', class:'button is-primary' %>

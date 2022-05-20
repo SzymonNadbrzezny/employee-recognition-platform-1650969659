@@ -24,10 +24,10 @@
   <div class="field">
     <%= form.label :receiver_id, class:'label' %>
     <div class='select is-primary'>
-      <%= form.collection_select :receiver_id, Employee.where.not(id: current_employee.id),:id,:email %>
+      <%= form.collection_select :receiver_id, Employee.where.not(id: current_employee.id), :id, :email %>
     </div>
   </div>
   <div class="actions container">
-    <%= form.submit class:'button is-primary', onsubmit: current_employee.decrease_kudos(current_employee) %>
+    <%= form.submit class:'button is-primary' %>
   </div>
 <% end %>

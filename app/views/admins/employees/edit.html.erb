@@ -1,8 +1,7 @@
 <div class='title'>Editing employee</div>
-
 <%= render 'form', employee: @employee %>
 
 <div class='columns is-vcentered mt-1 has-text-centered'>
-<%= link_to 'Show', admins_employee_path(@employee),class:'column' %>
-<%= link_to 'Back', admins_employees_path,class:'column' %>
+  <%= link_to 'Show', admins_employee_path(@employee), class:'column' %>
+  <%= link_to 'Back', admins_employees_path, class:'column' %>
 </div>

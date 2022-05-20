@@ -1,17 +1,18 @@
 module Admins
   class KudosController < AdminsController
-    before_action :set_kudo, only: %i[show destroy]
-
     # GET /kudos
     def index
       @kudos = Kudo.includes(:receiver, :giver).all
     end
 
     # GET /kudos/1
-    def show; end
+    def show
+      current_kudo
+    end
 
     # DELETE /kudos/1
     def destroy
+      current_kudo
       @kudo.destroy
       redirect_to admins_kudos_url, notice: 'Kudo was successfully destroyed.'
     end
@@ -19,7 +20,7 @@ module Admins
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_kudo
+    def current_kudo
       @kudo = Kudo.find(params[:id])
     end
 

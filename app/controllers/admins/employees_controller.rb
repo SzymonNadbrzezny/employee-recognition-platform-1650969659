@@ -1,25 +1,30 @@
 module Admins
   class EmployeesController < AdminsController
-    before_action :set_employee, only: %i[show edit update destroy]
     # GET /employees
     def index
       @employees = Employee.all
     end
 
     # GET /employees/1
-    def show; end
+    def show
+      current_employee
+    end
 
     # GET /employees/1/edit
-    def edit; end
+    def edit
+      current_employee
+    end
 
     # DELETE /employees/1
     def destroy
+      current_employee
       @employee.destroy
       redirect_to admins_employees_url, notice: 'Employee was successfully destroyed.'
     end
 
     # PATCH/PUT /employees/1
     def update
+      current_employee
       if employee_params[:password] != ''
         if @employee.update(employee_params)
           redirect_to admins_employees_path, notice: 'Employee was successfully updated.'
@@ -36,7 +41,7 @@ module Admins
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_employee
+    def current_employee
       @employee = Employee.find(params[:id])
     end
 
