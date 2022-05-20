@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Kudo handling' do
-  let(:employee) { create(:employee, number_of_avaible_kudos: 1) }
+  let(:employee) { create(:employee, number_of_available_kudos: 1) }
   let!(:receiver) { create(:employee) }
   let!(:company_value) { create(:company_value) }
   let!(:company_value2) { create(:company_value) }
@@ -34,8 +34,8 @@ RSpec.describe 'Kudo handling' do
     expect(page).to have_content 'Kudo was successfully destroyed.'
   end
 
-  it 'checks if employee has enough avaible kudos' do
-    employee.number_of_avaible_kudos = 0
+  it 'checks if employee has enough available kudos' do
+    employee.number_of_available_kudos = 0
     visit root_path
     expect(page).to have_content('Avaible Kudos0')
     expect(page).to have_button('New Kudo', disabled: true)

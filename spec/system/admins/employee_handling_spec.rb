@@ -21,10 +21,10 @@ RSpec.describe 'Employee handling allows' do
     expect(page).to have_content '10'
 
     click_link 'Edit'
-    expect(page).to have_content 'Number of avaible kudos'
+    expect(page).to have_content 'Number of available kudos'
     expect(page).to have_content 'Editing employee'
 
-    fill_in 'employee_number_of_avaible_kudos', with: 5
+    fill_in 'employee_number_of_available_kudos', with: 5
     click_on 'Update'
     expect(page).to have_content employee.email
     expect(page).to have_content '5'

@@ -12,7 +12,7 @@
     <% @employees.each do |employee| %>
       <tr>
         <td><%= employee.email %></td>
-        <td><%= employee.number_of_avaible_kudos %></td>
+        <td><%= employee.number_of_available_kudos %></td>
         <td><%= employee.created_at.strftime("%d/%m/%Y") %></td>
         <td><%= link_to "Edit", edit_admins_employee_path(employee.id, @employee) %></td>
         <td><%= link_to "Destroy", admins_employee_path(employee.id, @employee), method: :delete, data: { confirm: "Are you sure?" } %></td>

@@ -25,7 +25,7 @@ class KudosController < ApplicationController
   def create
     @kudo = Kudo.new(kudo_params)
     @kudo.giver = current_employee
-    current_employee.decrement(:number_of_avaible_kudos).save if current_employee.number_of_avaible_kudos.positive?
+    current_employee.decrement(:number_of_available_kudos).save if current_employee.number_of_available_kudos.positive?
     if @kudo.save
       redirect_to kudos_path, notice: 'Kudo was successfully created.'
     else

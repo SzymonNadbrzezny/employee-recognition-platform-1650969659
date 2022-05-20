@@ -47,7 +47,7 @@ module Admins
 
     # Only allow a list of trusted parameters through.
     def employee_params
-      params.require(:employee).permit(:email, :number_of_avaible_kudos, :password)
+      params.require(:employee).permit(:email, :number_of_available_kudos, :password)
     end
   end
 end
