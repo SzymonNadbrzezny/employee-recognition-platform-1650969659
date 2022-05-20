@@ -3,7 +3,7 @@ class KudosController < ApplicationController
 
   # GET /kudos
   def index
-    @kudos = Kudo.includes(:receiver, :giver).all
+    @kudos = Kudo.includes(:receiver, :giver, :company_value).all
   end
 
   # GET /kudos/1
@@ -59,6 +59,6 @@ class KudosController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def kudo_params
-    params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
+    params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id, :company_value_id)
   end
 end
