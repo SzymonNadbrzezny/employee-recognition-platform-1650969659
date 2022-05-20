@@ -2,51 +2,49 @@ module Admins
   class CompanyValuesController < AdminsController
     # GET /company_values
     def index
-      @company_values = CompanyValue.all
+      render :index, locals: { company_values: CompanyValue.all }
     end
 
     def new
-      @company_value = CompanyValue.new
+      render :new, locals: { company_value: CompanyValue.new }
     end
 
     # GET /company_values/1/edit
     def edit
-      current_company_value
+      render :edit, locals: { company_value: company_value }
     end
 
     # POST /company_values
     def create
       @company_value = CompanyValue.new(company_value_params)
 
-      if @company_value.save
+      if company_value.save
         redirect_to admins_company_values_path, notice: 'Company Value was successfully created.'
       else
-        render :new
+        render :new, locals: { company_value: company_value }
       end
     end
 
     # DELETE /company_values/1
     def destroy
-      current_company_value
-      @company_value.destroy
+      company_value.destroy
       redirect_to admins_company_values_url, notice: 'Company Value was successfully destroyed.'
     end
 
     # PATCH/PUT /company_values/1
     def update
-      current_company_value
-      if @company_value.update(company_value_params)
+      if company_value.update(company_value_params)
         redirect_to admins_company_values_path, notice: 'Company Value was successfully updated.'
       else
-        render :edit
+        render :edit, locals: { company_value: company_value }
       end
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def current_company_value
-      @company_value = CompanyValue.find(params[:id])
+    def company_value
+      @company_value ||= CompanyValue.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
