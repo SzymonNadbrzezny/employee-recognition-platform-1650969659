@@ -30,6 +30,7 @@ RSpec.describe 'Company Values handling allows' do
     fill_in 'company_value_title', with: 'new test title'
     click_on 'Create Company value'
     expect(page).to have_content 'Company Value was successfully created.'
+    expect(page).to have_content 'new test title'
 
     click_link 'Edit', match: :first
     fill_in 'company_value_title', with: 'new test title'
