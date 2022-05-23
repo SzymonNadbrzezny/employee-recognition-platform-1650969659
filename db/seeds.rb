@@ -16,14 +16,14 @@ puts 'Company values creation'
 %w[Honesty Ownership Accountability Passion].each do |company_value_title|
   CompanyValue.where(title: company_value_title).first_or_create!
 end
-2.upto(5) do |i|
-  Reward.where(title: "Reward nr. #{i}").first_or_create!(description: Faker::Creature::Animal,
+1.upto(5) do |i|
+  Reward.where(title: "Reward nr. #{i}").first_or_create!(description: Faker::TvShows::Supernatural.creature,
                                                           price: Faker::Number.decimal(
-                                                            l_digits: 3, r_digits: 3
+                                                            l_digits: 3, r_digits: 2
                                                           ))
 end
-2.upto(5) do |i|
-  Kudo.where(title: " Seeds for employee#{i}@test.com").first_or_create!(content: Faker::Creature::Animal,
+1.upto(5) do |i|
+  Kudo.where(title: " Seeds for employee#{i}@test.com").first_or_create!(content: Faker::TvShows::Supernatural.creature,
                                                                          giver: Employee.all.sample,
                                                                          receiver: Employee.find_by(email: "employee#{i}@test.com"),
                                                                          company_value: CompanyValue.find_by(title: 'Honesty'))
