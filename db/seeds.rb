@@ -19,7 +19,7 @@ CompanyValue.where(title: 'Accountability').first_or_create!
 CompanyValue.where(title: 'Passion').first_or_create!
 2.upto(5) do |i|
   Kudo.where(title: " Seeds for employee#{i}@test.com").first_or_create!(content: 'smh',
-                                                                         giver: Employee.find_by(email: 'employee1@test.com'),
+                                                                         giver: Employee.all.sample,
                                                                          receiver: Employee.find_by(email: "employee#{i}@test.com"),
                                                                          company_value: CompanyValue.find_by(title: 'Honesty'))
 end
