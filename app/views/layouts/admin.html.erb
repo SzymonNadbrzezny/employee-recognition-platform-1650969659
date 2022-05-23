@@ -25,15 +25,20 @@
             </a>
           </div>
           <div class='navbar-end'>
-          
-              <% if admin_signed_in? %>
-              <%= link_to "Kudo list", admins_kudos_path, class: "navbar-item" %>
-              <%= link_to "Employee list", admins_employees_path, class: "navbar-item" %>
-              <%= link_to "Company Values list", admins_company_values_path, class: "navbar-item" %>
-                <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "navbar-item" %>
-              <% else %>
-                <%= link_to "Sign in", new_admin_session_path, method: :delete, class: "navbar-item" %>
-              <% end %>
+            <% if admin_signed_in? %>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <%= link_to "Pages", admins_root_path, class: "navbar-link"%>
+                <div class="navbar-dropdown">
+                  <%= link_to "Kudo list", admins_kudos_path, class: "dropdown-item" %>
+                  <%= link_to "Employee list", admins_employees_path, class: "navbar-item" %>
+                  <%= link_to "Company Values list", admins_company_values_path, class: "navbar-item" %>
+                  <%= link_to "Rewards list", admins_rewards_path, class: "navbar-item" %>
+                </div>
+              </div>
+              <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "navbar-item" %>
+            <% else %>
+              <%= link_to "Sign in", new_admin_session_path, method: :delete, class: "navbar-item" %>
+            <% end %>
           </div>
         </div>
       </nav>

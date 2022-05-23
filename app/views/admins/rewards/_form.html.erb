@@ -1,0 +1,33 @@
+<%= form_with(model: [:admins, reward]) do |f| %>
+  <% if reward.errors.any? %>
+    <div id="error_explanation notification is-warning">
+      <h2><%= pluralize(reward.errors.count, "error") %> prohibited this company value from being saved:</h2>
+      <ul>
+        <% reward.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :title, class:'label' %>
+    <div class='control'>
+      <%= f.text_field :title, value: reward.title, autofocus: true, class:'input' %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :description, class:'label' %>
+    <div class='control'>
+      <%= f.text_area :description, value: reward.description, class:'input' %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :price, class:'label' %>
+    <div class='control'>
+      <%= f.number_field :price, value: reward.price, class:'input', step: 0.01 %>
+    </div>
+  </div>
+  <div class="actions container">
+    <%= f.submit class:'button is-primary' %>
+  </div>
+<% end %>
