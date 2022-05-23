@@ -2,15 +2,15 @@
 #
 # Table name: employees
 #
-#  id                      :bigint           not null, primary key
-#  email                   :string           default(""), not null
-#  encrypted_password      :string           default(""), not null
-#  number_of_avaible_kudos :integer          default(10), not null
-#  remember_created_at     :datetime
-#  reset_password_sent_at  :datetime
-#  reset_password_token    :string
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
+#  id                        :bigint           not null, primary key
+#  email                     :string           default(""), not null
+#  encrypted_password        :string           default(""), not null
+#  number_of_available_kudos :integer          default(10), not null
+#  remember_created_at       :datetime
+#  reset_password_sent_at    :datetime
+#  reset_password_token      :string
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
 #
 # Indexes
 #

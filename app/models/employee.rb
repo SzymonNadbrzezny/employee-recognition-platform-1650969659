@@ -2,15 +2,15 @@
 #
 # Table name: employees
 #
-#  id                      :bigint           not null, primary key
-#  email                   :string           default(""), not null
-#  encrypted_password      :string           default(""), not null
-#  number_of_avaible_kudos :integer          default(10), not null
-#  remember_created_at     :datetime
-#  reset_password_sent_at  :datetime
-#  reset_password_token    :string
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
+#  id                        :bigint           not null, primary key
+#  email                     :string           default(""), not null
+#  encrypted_password        :string           default(""), not null
+#  number_of_available_kudos :integer          default(10), not null
+#  remember_created_at       :datetime
+#  reset_password_sent_at    :datetime
+#  reset_password_token      :string
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
 #
 # Indexes
 #
@@ -26,8 +26,8 @@ class Employee < ApplicationRecord
   has_many :given_kudos, class_name: 'Kudo', foreign_key: 'giver_id', dependent: :destroy, inverse_of: :giver
 
   def decrease_kudos(employee)
-    avaible_kudos = (employee.number_of_avaible_kudos - 1)
-    avaible_kudos = 0 if avaible_kudos.negative?
-    Employee.update(employee.id, number_of_avaible_kudos: avaible_kudos)
+    available_kudos = (employee.number_of_available_kudos - 1)
+    available_kudos = 0 if available_kudos.negative?
+    Employee.update(employee.id, number_of_available_kudos: available_kudos)
   end
 end

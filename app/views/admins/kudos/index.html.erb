@@ -10,14 +10,14 @@
     </tr>
   </thead>
   <tbody>
-    <% @kudos.each do |kudo| %>
+    <% kudos.each do |kudo| %>
       <tr>
         <td><%= kudo.title %></td>
         <td><%= kudo.content %></td>
         <td><%= kudo.giver.email %></td>
         <td><%= kudo.receiver.email %></td>
-        <td><%= link_to "Show", admins_kudo_path(kudo.id, @kudo) %></td>
-        <td><%= link_to "Destroy", admins_kudo_path(kudo.id, @kudo), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <td><%= link_to "Show", admins_kudo_path(kudo) %></td>
+        <td><%= link_to "Destroy", admins_kudo_path(kudo), method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
