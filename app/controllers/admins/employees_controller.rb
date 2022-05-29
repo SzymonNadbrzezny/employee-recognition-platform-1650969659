@@ -23,7 +23,7 @@ module Admins
 
     # PATCH/PUT /employees/1
     def update
-      if employee_params[:password] != ''
+      if employee_params[:password].empty?
         if employee.update(employee_params)
           redirect_to admins_employees_path, notice: 'Employee was successfully updated.'
         else
