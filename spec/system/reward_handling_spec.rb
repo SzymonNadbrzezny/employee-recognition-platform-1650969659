@@ -18,9 +18,9 @@ RSpec.describe 'Rewards handling allows' do
     expect(page).to have_content reward.price
     expect(page).to have_content 'Show'
 
-	click_link 'Show'
-	expect(page).to have_content reward.title
-	expect(page).to have_content reward.description
-	expect(page).to have_content reward.price
+    click_link 'Show'
+    expect(page).to have_content reward.title
+    expect(page).to have_content reward.description
+    expect(page).to have_content reward.price
   end
 end
