@@ -1,0 +1,21 @@
+<div class='title'>Reward</div>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% rewards.each do |reward| %>
+      <tr>
+        <td><%= reward.title %></td>
+        <td><%= reward.price %></td>
+        <td><%= link_to "Show", reward_path(reward) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
