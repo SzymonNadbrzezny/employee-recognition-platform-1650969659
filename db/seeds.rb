@@ -5,21 +5,37 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+require 'faker'
+puts 'Creating employees'
 1.upto(5) do |i|
+  print '.'
   Employee.where(email: "employee#{i}@test.com").first_or_create!(password: 'password')
 end
-puts 'Admin account creation'
+puts '✅'
+puts 'Creating Admin account'
 Admin.where(email: 'admin@test.com').first_or_create!(password: 'admintest')
-
-puts 'Company values creation'
-CompanyValue.where(title: 'Honesty').first_or_create!
-CompanyValue.where(title: 'Ownership').first_or_create!
-CompanyValue.where(title: 'Accountability').first_or_create!
-CompanyValue.where(title: 'Passion').first_or_create!
-2.upto(5) do |i|
-  Kudo.where(title: " Seeds for employee#{i}@test.com").first_or_create!(content: 'smh',
-                                                                         giver: Employee.all.sample,
-                                                                         receiver: Employee.find_by(email: "employee#{i}@test.com"),
-                                                                         company_value: CompanyValue.find_by(title: 'Honesty'))
+puts '✅'
+puts 'Creating Company values'
+%w[Honesty Ownership Accountability Passion].each do |company_value_title|
+  print '.'
+  CompanyValue.where(title: company_value_title).first_or_create!
 end
+puts '✅'
+puts 'Creating rewards'
+1.upto(5) do |i|
+  print '.'
+  Reward.where(title: "Reward nr. #{i}").first_or_create!(description: Faker::TvShows::Supernatural.creature,
+                                                          price: Faker::Number.decimal(
+                                                            l_digits: 3, r_digits: 2
+                                                          ))
+end
+puts '✅'
+puts 'Creating kudos'
+1.upto(5) do |i|
+  print '.'
+  Kudo.where(title: "Kudo nr. #{i}").first_or_create!(content: Faker::TvShows::Supernatural.creature,
+                                                      giver: Employee.all.sample,
+                                                      receiver: Employee.find_by(email: "employee#{i}@test.com"),
+                                                      company_value: CompanyValue.find_by(title: 'Honesty'))
+end
+puts '✅'

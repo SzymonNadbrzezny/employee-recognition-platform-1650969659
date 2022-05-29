@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 7846d10edaa0786a7b7df707533dbc7e995d3299
+  branch: master
+  specs:
+    faker (2.21.0)
+      i18n (>= 1.8.11, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -286,6 +294,7 @@ DEPENDENCIES
   capybara
   devise
   factory_bot_rails
+  faker!
   listen (~> 3.3)
   net-imap
   net-pop
