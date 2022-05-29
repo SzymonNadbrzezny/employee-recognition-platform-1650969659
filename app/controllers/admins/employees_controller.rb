@@ -24,12 +24,12 @@ module Admins
     # PATCH/PUT /employees/1
     def update
       if employee_params[:password].empty?
-        if employee.update(employee_params)
+        if employee.update_without_password(employee_params.except(:password))
           redirect_to admins_employees_path, notice: 'Employee was successfully updated.'
         else
           render :edit, locals: { employee: employee }
         end
-      elsif employee.update_without_password(employee_params.except(:password))
+      elsif employee.update(employee_params)
         redirect_to admins_employees_path, notice: 'Employee was successfully updated.'
       else
         render :edit, locals: { employee: employee }
