@@ -36,6 +36,6 @@ puts 'Creating kudos'
   Kudo.where(title: "Kudo nr. #{i}").first_or_create!(content: Faker::TvShows::Supernatural.creature,
                                                       giver: Employee.all.sample,
                                                       receiver: Employee.find_by(email: "employee#{i}@test.com"),
-                                                      company_value: CompanyValue.find_by(title: 'Honesty'))
+                                                      company_value: CompanyValue.all.sample)
 end
 puts '✅'
