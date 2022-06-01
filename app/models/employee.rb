@@ -30,4 +30,8 @@ class Employee < ApplicationRecord
     available_kudos = 0 if available_kudos.negative?
     Employee.update(employee.id, number_of_available_kudos: available_kudos)
   end
+
+  def current_points
+    received_kudos.size
+  end
 end
