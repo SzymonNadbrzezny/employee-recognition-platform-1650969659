@@ -5,13 +5,14 @@
 
 Rails.application.routes.draw do
   resources :kudos
+  resources :rewards, only: %i[index show]
   devise_for :admins, path: 'admins', controllers: {
     sessions: 'admins/sessions'
   }
   devise_for :employees, path: 'employees'
   namespace :admins do
     resources :kudos
-    resources :employees
+    resources :employees, except: :create
     resources :rewards
     resources :company_values
 

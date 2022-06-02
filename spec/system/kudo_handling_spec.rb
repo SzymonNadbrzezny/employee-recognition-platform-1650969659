@@ -17,7 +17,7 @@ RSpec.describe 'Kudo handling' do
     fill_in 'Content',	with: 'kudo content'
     select company_value2.title, from: 'Company value'
     click_button 'Create Kudo'
-    expect(page).to have_content('Avaible Kudos0')
+    expect(page).to have_content('Avaible Kudos 0')
     expect(page).to have_content 'Kudo was successfully created.'
     expect(page).to have_content 'Kudo title'
     expect(page).to have_content company_value2.title
@@ -37,7 +37,7 @@ RSpec.describe 'Kudo handling' do
   it 'checks if employee has enough available kudos' do
     employee.number_of_available_kudos = 0
     visit root_path
-    expect(page).to have_content('Avaible Kudos0')
+    expect(page).to have_content('Avaible Kudos 0')
     expect(page).to have_button('New Kudo', disabled: true)
   end
 end

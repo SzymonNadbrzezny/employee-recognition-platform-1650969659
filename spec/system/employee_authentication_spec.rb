@@ -15,7 +15,7 @@ RSpec.describe 'Employee authentication actions' do
     click_button 'Sign up'
 
     expect(page).to have_content 'Welcome! You have signed up successfully.'
-    expect(page).to have_content 'Avaible Kudos10'
+    expect(page).to have_content 'Avaible Kudos 10'
 
     click_link 'Sign out'
 

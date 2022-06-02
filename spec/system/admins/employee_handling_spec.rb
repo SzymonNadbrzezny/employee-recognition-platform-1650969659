@@ -50,7 +50,7 @@ RSpec.describe 'Employee handling allows' do
     fill_in 'Password',	with: 'randompassword'
     click_button 'Log in'
     expect(page).to have_content 'Signed in successfully.'
-    expect(page).to have_content 'Avaible Kudos5'
+    expect(page).to have_content 'Avaible Kudos 5'
     click_link 'Sign out'
     visit admins_employees_path
     click_link 'Destroy'

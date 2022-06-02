@@ -25,15 +25,22 @@
             </a>
           </div>
           <div class='navbar-end'>
-
-              <% if employee_signed_in? %>
-                <span class='navbar-item has-background-primary-dark has-text-centered'>Avaible Kudos<br><%= current_employee.number_of_available_kudos  %></span>
-                <%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:'navbar-item' %>
-              <% else %>
-                <%= link_to 'Sign in', new_employee_session_path, method: :delete, class:'navbar-item' %>
-                <%= link_to 'Sign up', new_employee_registration_path, method: :GET, class:'navbar-item' %>
-              <% end %>
-
+            <% if employee_signed_in? %>
+              <span class='navbar-item has-background-primary-dark has-text-centered'>Avaible Kudos<br>
+                <%= current_employee.number_of_available_kudos  %>
+              </span>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <%= link_to "Pages", root_path, class: "navbar-link"%>
+                <div class="navbar-dropdown">
+                  <%= link_to "Kudos", kudos_path, class: "navbar-item"%>
+                  <%= link_to "Rewards", rewards_path, class: "navbar-item"%>
+                </div>
+              </div>
+              <%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:'navbar-item' %>
+            <% else %>
+              <%= link_to 'Sign in', new_employee_session_path, method: :delete, class:'navbar-item' %>
+              <%= link_to 'Sign up', new_employee_registration_path, method: :GET, class:'navbar-item' %>
+            <% end %>
           </div>
         </div>
       </nav>
