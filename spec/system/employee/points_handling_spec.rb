@@ -14,7 +14,6 @@ RSpec.describe 'Points handling' do
     end
     create_list(:kudo, 4, receiver: receiver)
     visit root_path
-    receiver.reload
     within('.kudo-container') do
       expect(page).to have_content receiver.current_points
     end

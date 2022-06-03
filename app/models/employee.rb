@@ -32,6 +32,6 @@ class Employee < ApplicationRecord
   end
 
   def current_points
-    received_kudos.size
+    received_kudos.count
   end
 end
