@@ -26,8 +26,17 @@
           </div>
           <div class='navbar-end'>
             <% if employee_signed_in? %>
-              <span class='navbar-item has-background-primary-dark has-text-centered'>Avaible Kudos<br>
-                <%= current_employee.number_of_available_kudos  %>
+              <span class='navbar-item info has-background-primary-dark has-text-centered my-0 py-0 is-flex is-align-content-space-evenly'>
+                <div class=' kudo-container is-flex is-flex-direction-row is-justify-content-space-around is-align-items-center'>
+                  <p>Current points<br>
+                    <%= current_employee.current_points %>
+                  </p>
+                  <%= inline_svg_tag('kudo.svg', class: 'kudo') %>
+                </div>
+                <div>
+                  Avaible Kudos<br>
+                  <%= current_employee.number_of_available_kudos  %>
+                </div>
               </span>
               <div class="navbar-item has-dropdown is-hoverable">
                 <%= link_to "Pages", root_path, class: "navbar-link"%>
