@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   # GET /orders
   def index
-    if params[:id].to_f == current_employee.id
+    if params[:id].to_i == current_employee.id
       render :index, locals: { orders: Order.where(buyer_id: params[:id]) }
     else
       redirect_to orders_employee_path(current_employee.id)
