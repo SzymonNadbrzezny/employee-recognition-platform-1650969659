@@ -29,7 +29,7 @@
               <span class='navbar-item info has-background-primary-dark has-text-centered my-0 py-0 is-flex is-align-content-space-evenly'>
                 <div class=' kudo-container is-flex is-flex-direction-row is-justify-content-space-around is-align-items-center'>
                   <p>Current points<br>
-                    <%= current_employee.current_points %>
+                    <%= current_employee.points %>
                   </p>
                   <%= inline_svg_tag('kudo.svg', class: 'kudo') %>
                 </div>
@@ -43,6 +43,7 @@
                 <div class="navbar-dropdown">
                   <%= link_to "Kudos", kudos_path, class: "navbar-item"%>
                   <%= link_to "Rewards", rewards_path, class: "navbar-item"%>
+                  <%= link_to "Orders", orders_employee_path(current_employee.id), class: "navbar-item"%>
                 </div>
               </div>
               <%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:'navbar-item' %>
