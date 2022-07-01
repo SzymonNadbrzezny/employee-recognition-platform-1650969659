@@ -3,7 +3,7 @@
 # Table name: rewards
 #
 #  id          :bigint           not null, primary key
-#  description :string           not null
+#  description :text             not null
 #  price       :decimal(, )      not null
 #  title       :string           not null
 #  created_at  :datetime         not null
