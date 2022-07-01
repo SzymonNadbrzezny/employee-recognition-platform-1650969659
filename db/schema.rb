@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_23_210536) do
+ActiveRecord::Schema.define(version: 2022_06_30_011606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2022_05_23_210536) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "number_of_available_kudos", default: 10, null: false
+    t.decimal "points", default: "0.0", null: false
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
@@ -60,9 +61,17 @@ ActiveRecord::Schema.define(version: 2022_05_23_210536) do
     t.index ["receiver_id"], name: "index_kudos_on_receiver_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.text "reward", null: false
+    t.bigint "buyer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buyer_id"], name: "index_orders_on_buyer_id"
+  end
+
   create_table "rewards", force: :cascade do |t|
     t.string "title", null: false
-    t.string "description", null: false
+    t.text "description", null: false
     t.decimal "price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -71,4 +80,5 @@ ActiveRecord::Schema.define(version: 2022_05_23_210536) do
   add_foreign_key "kudos", "company_values"
   add_foreign_key "kudos", "employees", column: "giver_id"
   add_foreign_key "kudos", "employees", column: "receiver_id"
+  add_foreign_key "orders", "employees", column: "buyer_id"
 end

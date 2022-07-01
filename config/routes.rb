@@ -6,10 +6,17 @@
 Rails.application.routes.draw do
   resources :kudos
   resources :rewards, only: %i[index show]
+  resources :orders, only: %i[new create] 
+  devise_for :employees, path: 'employees'
+  resources :employees do
+    member do
+      resources :orders, only: %i[index show]
+      get "orders", to: "order#index"
+    end
+  end
   devise_for :admins, path: 'admins', controllers: {
     sessions: 'admins/sessions'
   }
-  devise_for :employees, path: 'employees'
   namespace :admins do
     resources :kudos
     resources :employees, except: :create
