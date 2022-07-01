@@ -6,6 +6,7 @@
 #  email                     :string           default(""), not null
 #  encrypted_password        :string           default(""), not null
 #  number_of_available_kudos :integer          default(10), not null
+#  points                    :decimal(, )      default(0.0), not null
 #  remember_created_at       :datetime
 #  reset_password_sent_at    :datetime
 #  reset_password_token      :string

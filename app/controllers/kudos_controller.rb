@@ -26,7 +26,10 @@ class KudosController < ApplicationController
     @kudo = Kudo.new(kudo_params)
     kudo.giver = current_employee
     if kudo.save
-      current_employee.decrement(:number_of_available_kudos).save if current_employee.number_of_available_kudos.positive?
+      if current_employee.number_of_available_kudos.positive?
+        current_employee.decrement(:number_of_available_kudos).save
+      end
+      kudo.receiver.increment(:points).save
       redirect_to kudos_path, notice: 'Kudo was successfully created.'
     else
       render :new, locals: { kudo: kudo }
@@ -44,6 +47,7 @@ class KudosController < ApplicationController
 
   # DELETE /kudos/1
   def destroy
+    kudo.receiver.decrement(:points).save if kudo.receiver.points.positive?
     kudo.destroy
     redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
   end
