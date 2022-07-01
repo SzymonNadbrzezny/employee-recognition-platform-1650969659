@@ -10,12 +10,12 @@ RSpec.describe 'Points handling' do
   it 'checks wheter employee is shown number of points he has' do
     visit root_path
     within('.kudo-container') do
-      expect(page).to have_content receiver.current_points
+      expect(page).to have_content receiver.points
     end
     create_list(:kudo, 4, receiver: receiver)
     visit root_path
     within('.kudo-container') do
-      expect(page).to have_content receiver.current_points
+      expect(page).to have_content receiver.points
     end
   end
 end
