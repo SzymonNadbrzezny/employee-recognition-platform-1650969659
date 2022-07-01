@@ -18,5 +18,6 @@
 #
 FactoryBot.define do
   factory :order do
+    reward factory: :reward
   end
 end
