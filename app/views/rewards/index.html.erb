@@ -12,6 +12,11 @@
       <tr>
         <td><%= reward.title %></td>
         <td><%= reward.price %></td>
+        <td>
+        <% if current_employee.points >= reward.price%>
+        <%= link_to "Buy", new_order_path(reward) %>
+        <%end%>
+        </td>
         <td><%= link_to "Show", reward_path(reward) %></td>
       </tr>
     <% end %>

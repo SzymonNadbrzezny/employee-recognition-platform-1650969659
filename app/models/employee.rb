@@ -6,6 +6,7 @@
 #  email                     :string           default(""), not null
 #  encrypted_password        :string           default(""), not null
 #  number_of_available_kudos :integer          default(10), not null
+#  points                    :decimal(, )      default(0.0), not null
 #  remember_created_at       :datetime
 #  reset_password_sent_at    :datetime
 #  reset_password_token      :string
@@ -24,14 +25,4 @@ class Employee < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :received_kudos, class_name: 'Kudo', foreign_key: 'receiver_id', dependent: :destroy, inverse_of: :receiver
   has_many :given_kudos, class_name: 'Kudo', foreign_key: 'giver_id', dependent: :destroy, inverse_of: :giver
-
-  def decrease_kudos(employee)
-    available_kudos = (employee.number_of_available_kudos - 1)
-    available_kudos = 0 if available_kudos.negative?
-    Employee.update(employee.id, number_of_available_kudos: available_kudos)
-  end
-
-  def current_points
-    received_kudos.count
-  end
 end

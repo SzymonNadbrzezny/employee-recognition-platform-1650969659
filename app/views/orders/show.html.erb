@@ -1,0 +1,25 @@
+<div class='card'>
+  <div class='card-header has-background-primary'>
+    <div class='card-header-title'>
+      Order nr. <%= order.id %>
+    </div>
+  </div>
+  <div class='card-content has-background-primary-light'>
+    Title:
+    <div class='card-header-title'>
+      <%= reward["title"] %>
+    </div>
+    Description:
+    <div class='card-header-title'>
+      <%= reward["description"] %>
+    </div>
+    Price:
+    <div class='card-header-title'>
+      <%= reward["price"] %>
+    </div>
+  </div>
+
+</div>
+<div class='columns is-vcentered mt-1 has-text-centered'>
+  <%= link_to 'Back', :back, class:'column' %>
+</div>

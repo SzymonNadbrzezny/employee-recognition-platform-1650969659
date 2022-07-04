@@ -1,0 +1,24 @@
+<div class='title'>Order</div>
+<table>
+  <thead>
+    <tr>
+      <th>Order nr.</th>
+      <th>Reward Title</th>
+      <th>Price</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.each do |order| %>
+    <% reward=JSON.parse(order.reward)%>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= reward["title"] %></td>
+        <td><%= reward["price"] %></td>
+        <td><%= link_to "Show", order_path(order) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+

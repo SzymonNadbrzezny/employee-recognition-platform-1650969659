@@ -9,7 +9,7 @@ require 'faker'
 puts 'Creating employees'
 1.upto(5) do |i|
   print '.'
-  Employee.where(email: "employee#{i}@test.com").first_or_create!(password: 'password')
+  Employee.where(email: "employee#{i}@test.com").first_or_create!(password: 'password', points: 0)
 end
 puts '✅'
 puts 'Creating Admin account'
@@ -26,16 +26,19 @@ puts 'Creating rewards'
   print '.'
   Reward.where(title: "Reward nr. #{i}").first_or_create!(description: Faker::TvShows::Supernatural.creature,
                                                           price: Faker::Number.decimal(
-                                                            l_digits: 3, r_digits: 2
+                                                            l_digits: 1, r_digits: 1
                                                           ))
 end
 puts '✅'
 puts 'Creating kudos'
 1.upto(5) do |i|
   print '.'
+  employee=Employee.find_by(email: "employee#{i}@test.com")
   Kudo.where(title: "Kudo nr. #{i}").first_or_create!(content: Faker::TvShows::Supernatural.creature,
                                                       giver: Employee.all.sample,
-                                                      receiver: Employee.find_by(email: "employee#{i}@test.com"),
+                                                      receiver: employee,
                                                       company_value: CompanyValue.all.sample)
+  employee.increment(:points).save
+
 end
 puts '✅'
