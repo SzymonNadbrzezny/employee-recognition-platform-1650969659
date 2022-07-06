@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Orders handling allows' do
   let!(:employee) { create(:employee, points: 10) }
   let!(:reward) { create(:reward, price: 2) }
+  let!(:order) { create(:order, buyer: employee, reward: reward.to_json) }
 
   before do
     sign_in employee
@@ -24,7 +25,14 @@ RSpec.describe 'Orders handling allows' do
     expect(page).to have_content reward.price
     expect(page).to have_button 'Create Order'
     click_button 'Create Order'
-
     expect(page).to have_content("Current points #{10 - reward.price}")
+  end
+
+  it 'Employee to list their Orders and see price of reward at time of purchase' do
+    order_price = reward.price
+    reward.price = 5
+    visit orders_employee_path(employee.id)
+    expect(page).to have_content order_price.to_s
+    expect(page).to have_no_content reward.price.to_s
   end
 end
