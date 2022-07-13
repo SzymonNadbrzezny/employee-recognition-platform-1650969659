@@ -2,7 +2,7 @@ module Admins
   class OrdersController < AdminsController
     # GET /orders
     def index
-      employee=Employee.where(id:params[:id])[0]
+      employee = Employee.where(id: params[:id])[0]
       render :index, locals: { orders: Order.where(buyer_id: params[:id]), employee: employee }
     end
 
