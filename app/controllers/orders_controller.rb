@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1
   def show
-    reward = JSON.parse(order.reward)
+    reward = order.reward.to_json
     render :show, locals: { order: order, reward: reward }
   end
 
@@ -25,13 +25,13 @@ class OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
-    ordered_reward = JSON.parse(order.reward)
-    reward = Reward.find_by(id: JSON.parse(order.reward)['id'])
+    ordered_reward = Reward.from_json(order.reward)
+    reward = Reward.find_by(id: ordered_reward.id)
     order.buyer = current_employee
-    if order.buyer.points < ordered_reward['price'].to_f
+    if order.buyer.points < ordered_reward.price
       redirect_to rewards_path, alert: 'Not enough points'
     elsif order.save
-      order.buyer.decrement(:points, ordered_reward['price'].to_f).save
+      order.buyer.decrement(:points, ordered_reward.price).save
       redirect_to rewards_path, notice: 'Order was successfully created.'
     else
       render :new, locals: { order: order, reward: reward }

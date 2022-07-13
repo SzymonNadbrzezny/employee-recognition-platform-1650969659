@@ -1,14 +1,3 @@
-# == Schema Information
-#
-# Table name: rewards
-#
-#  id          :bigint           not null, primary key
-#  description :text             not null
-#  price       :decimal(, )      not null
-#  title       :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#
 require 'rails_helper'
 
 RSpec.describe Reward, type: :model do
