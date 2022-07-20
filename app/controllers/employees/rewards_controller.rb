@@ -1,6 +1,5 @@
 module Employees
   class RewardsController < EmployeesController
-    before_action :authenticate_employee!
 
     def index
       render :index, locals: { rewards: Reward.all }
