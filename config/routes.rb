@@ -19,7 +19,11 @@ Rails.application.routes.draw do
   }
   namespace :admins do
     resources :kudos
-    resources :employees, except: :create
+    resources :employees, except: :create do
+      member do
+        resources :orders, only: %i[index show] , as: 'employee_orders'
+      end
+    end
     resources :rewards
     resources :company_values
 
