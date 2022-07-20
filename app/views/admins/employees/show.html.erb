@@ -13,6 +13,12 @@
     <div class='card-header-title'>
       <%= employee.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
     </div>
+    <% if employee.orders.any?%>
+    Orders:
+    <div class='card-header-title'>
+      <%= render '/admins/orders/index',orders: employee.orders%>
+    </div>
+  <% end%>
   </div>
 </div>
 <div class='columns is-vcentered mt-1 has-text-centered'>

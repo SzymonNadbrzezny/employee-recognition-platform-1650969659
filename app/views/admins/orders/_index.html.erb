@@ -1,12 +1,11 @@
-<div class='title'>Orders of <%= employee.email.to_s %> </div>
 <table>
   <thead>
     <tr>
       <th>Order NR.</th>
       <th>Reward Title</th>
+      <th>Reward Description</th>
       <th>Price</th>
       <th>Time of Purchase</th>
-      <th colspan="1"></th>
     </tr>
   </thead>
   <tbody>
@@ -15,9 +14,9 @@
       <tr>
         <td><%= order.id %></td>
         <td><%= reward.title %></td>
+        <td><%= reward.description %></td>
         <td><%= reward.price %></td>
         <td><%= order.created_at %></td>
-        <td><%= link_to "Show", admins_employee_order_path(order) %></td>
       </tr>
     <% end %>
   </tbody>
