@@ -18,7 +18,9 @@
     <div class='card-header-title'>
       <%= render '/admins/orders/index',orders: employee.orders%>
     </div>
-  <% end%>
+  <% else %>
+    Employee hasn't made any order yet
+  <% end %>
   </div>
 </div>
 <div class='columns is-vcentered mt-1 has-text-centered'>
