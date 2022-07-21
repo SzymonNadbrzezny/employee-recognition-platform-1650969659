@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :orders, only: %i[new create]
     resources :employees do
       member do
-        resources :orders, only: %i[index show]
+        resources :orders, only: :index
         get 'orders', to: 'order#index'
       end
     end
