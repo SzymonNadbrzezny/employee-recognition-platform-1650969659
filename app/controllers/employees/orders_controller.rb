@@ -4,7 +4,7 @@ module Employees
     def index
       if params[:id].to_i == current_employee.id
         orders = current_employee.orders
-        render :index, locals: { orders: orders}
+        render :index, locals: { orders: orders }
       else
         redirect_to orders_employee_path(current_employee.id)
       end

@@ -31,7 +31,6 @@ module Employees
         kudo.receiver.increment(:points).save
         redirect_to kudos_path, notice: 'Kudo was successfully created.'
 
-        
       else
         render :new, locals: { kudo: kudo }
       end
