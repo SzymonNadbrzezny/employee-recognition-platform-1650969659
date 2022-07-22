@@ -11,8 +11,10 @@ RSpec.describe 'Orders handling allows' do
   end
 
   it 'Admin to list Orders created by Employees and see price of reward at time of purchase' do
-    visit admins_employees_path
-    click_link 'Orders'
+    visit admins_employee_path(employee.id)
+
+    expect(page).to have_content reward.title
+    expect(page).to have_content reward.description
     expect(page).to have_content reward.price.to_s
     expect(page).to have_content employee.email
   end

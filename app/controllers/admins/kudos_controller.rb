@@ -1,16 +1,13 @@
 module Admins
   class KudosController < AdminsController
-    # GET /kudos
     def index
       render :index, locals: { kudos: Kudo.includes(:receiver, :giver, :company_value).all }
     end
 
-    # GET /kudos/1
     def show
       render :show, locals: { kudo: kudo }
     end
 
-    # DELETE /kudos/1
     def destroy
       kudo.destroy
       redirect_to admins_kudos_url, notice: 'Kudo was successfully destroyed.'
@@ -18,12 +15,10 @@ module Admins
 
     private
 
-    # Use callbacks to share common setup or constraints between actions.
     def kudo
       @kudo ||= Kudo.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def kudo_params
       params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id, :company_value_id)
     end
