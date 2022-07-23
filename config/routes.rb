@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :employees, except: :create
     resources :rewards
     resources :company_values
+    resources :orders, only: :update
 
     root to: 'pages#dashboard'
   end
