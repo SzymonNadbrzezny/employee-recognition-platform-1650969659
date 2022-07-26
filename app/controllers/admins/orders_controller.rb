@@ -8,5 +8,10 @@ module Admins
       end
     end
 
+    private
+
+    def order
+      @order ||= Order.find(params[:id])
+    end
   end
 end
