@@ -13,8 +13,7 @@ Rails.application.routes.draw do
     resources :employees, except: :create
     resources :rewards
     resources :company_values
-    resources :orders, only: :update
-
+    patch "/admins/orders/:id(.:format)", to: "orders#deliver", as: "order"
     root to: 'pages#dashboard'
   end
   scope module: 'employees' do
