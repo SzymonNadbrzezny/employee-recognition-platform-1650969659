@@ -2,13 +2,13 @@ module Employees
   class OrdersController < EmployeesController
     def index
       if params[:id].to_i == current_employee.id
-        if params[:filter_by]=='delivered'
-          orders = current_employee.orders.delivered
-        elsif params[:filter_by]=='awaiting_delivery'
-          orders = current_employee.orders.awaiting_delivery
-        else
-        orders = current_employee.orders
-        end
+        orders = if params[:filter_by] == 'delivered'
+                   current_employee.orders.delivered
+                 elsif params[:filter_by] == 'awaiting_delivery'
+                   current_employee.orders.awaiting_delivery
+                 else
+                   current_employee.orders
+                 end
         render :index, locals: { orders: orders }
       else
         redirect_to orders_employee_path(current_employee.id)
@@ -41,6 +41,7 @@ module Employees
         render :new, locals: { order: order, reward: reward }
       end
     end
+
     private
 
     def order
