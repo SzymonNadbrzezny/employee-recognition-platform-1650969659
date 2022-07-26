@@ -2,9 +2,10 @@ module Employees
   class OrdersController < EmployeesController
     def index
       if params[:id].to_i == current_employee.id
-        orders = if params[:filter_by] == 'delivered'
+        orders = case params[:filter_by]
+                 when 'delivered'
                    current_employee.orders.delivered
-                 elsif params[:filter_by] == 'awaiting_delivery'
+                 when 'awaiting_delivery'
                    current_employee.orders.awaiting_delivery
                  else
                    current_employee.orders
