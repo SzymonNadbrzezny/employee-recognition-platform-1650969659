@@ -18,4 +18,15 @@ RSpec.describe 'Orders handling allows' do
     expect(page).to have_content reward.price.to_s
     expect(page).to have_content employee.email
   end
+
+  it 'Admin to deliver orders' do
+    visit admins_employee_path(employee.id)
+
+    expect(page).to have_content reward.title
+    expect(page).to have_link 'Deliver', href: admins_order_path(order.id)
+    click_link 'Deliver'
+    expect(page).to have_content 'Order was successfully updated.'
+    expect(page).to have_content 'Delivered'
+    expect(page).to have_no_link 'Deliver'
+  end
 end

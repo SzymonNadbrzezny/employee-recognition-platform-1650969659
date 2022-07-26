@@ -14,7 +14,7 @@
         <td><%= employee.email %></td>
         <td><%= employee.number_of_available_kudos %></td>
         <td><%= employee.created_at.strftime("%d/%m/%Y") %></td>
-        <td><%= link_to "Profile", admins_employee_path(employee.id) %></td>
+        <td><%= link_to "Profile#{employee.orders.awaiting_delivery.any? ? " (#{employee.orders.awaiting_delivery.size})" : ""}", admins_employee_path(employee.id) %></td>
         <td><%= link_to "Edit", edit_admins_employee_path(employee) %></td>
         <td><%= link_to "Destroy", admins_employee_path(employee), method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>

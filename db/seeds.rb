@@ -42,3 +42,11 @@ puts 'Creating kudos'
 
 end
 puts '✅'
+puts 'Creating orders'
+1.upto(5) do |i|
+  print '.'
+  employee=Employee.find_by(email: "employee#{i}@test.com")
+  Order.create(buyer: employee,
+              reward: Reward.all.sample.to_json)
+end
+puts '✅'

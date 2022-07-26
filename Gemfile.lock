@@ -288,7 +288,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  annotate
   bootsnap (>= 1.4.4)
   bulma-rails (~> 0.9.3)
   capybara

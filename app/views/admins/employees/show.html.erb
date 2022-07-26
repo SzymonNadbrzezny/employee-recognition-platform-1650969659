@@ -16,7 +16,7 @@
     <% if employee.orders.any?%>
     Orders:
     <div class='card-header-title'>
-      <%= render '/admins/orders/index',orders: employee.orders%>
+      <%= render '/admins/orders/index' , orders: employee.orders.ordered_by_status%>
     </div>
   <% else %>
     Employee hasn't made any order yet
