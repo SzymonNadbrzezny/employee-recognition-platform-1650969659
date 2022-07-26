@@ -27,6 +27,6 @@ RSpec.describe 'Orders handling allows' do
     click_link 'Deliver'
     expect(page).to have_content 'Order was successfully updated.'
     expect(page).to have_content 'Delivered'
-    expect(page).to have_no_link 'Delivered'
+    expect(page).to have_no_link 'Deliver'
   end
 end
