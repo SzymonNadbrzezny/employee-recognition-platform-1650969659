@@ -2,14 +2,7 @@ module Employees
   class OrdersController < EmployeesController
     def index
       if params[:id].to_i == current_employee.id
-        orders = case params[:filter_by]
-                 when 'delivered'
-                   current_employee.orders.delivered
-                 when 'awaiting_delivery'
-                   current_employee.orders.awaiting_delivery
-                 else
-                   current_employee.orders
-                 end
+        orders = OrdersQuery.new(current_employee.orders).call(params)
         render :index, locals: { orders: orders }
       else
         redirect_to orders_employee_path(current_employee.id)
