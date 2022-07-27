@@ -32,7 +32,8 @@ RSpec.describe 'Orders handling allows' do
   it 'Employee to list their Orders and see price of reward at time of purchase' do
     order_price = reward.price
     reward.price = 5
-    visit orders_employee_path(employee.id)
+    visit root_path
+    click_link 'Orders'
     expect(page).to have_content order_price.to_s
     expect(page).to have_no_content reward.price.to_s
   end
