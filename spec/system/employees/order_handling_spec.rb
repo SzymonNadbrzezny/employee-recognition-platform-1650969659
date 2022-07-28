@@ -4,6 +4,7 @@ RSpec.describe 'Orders handling allows' do
   let!(:employee) { create(:employee, points: 10) }
   let!(:reward) { create(:reward, price: 2) }
   let!(:order) { create(:order, buyer: employee, reward: reward.to_json) }
+  let!(:delivered_order) { create(:order, buyer: employee, reward: reward.to_json, status: :delivered) }
 
   before do
     sign_in employee
@@ -31,8 +32,27 @@ RSpec.describe 'Orders handling allows' do
   it 'Employee to list their Orders and see price of reward at time of purchase' do
     order_price = reward.price
     reward.price = 5
-    visit orders_employee_path(employee.id)
+    visit root_path
+    click_link 'Orders'
     expect(page).to have_content order_price.to_s
     expect(page).to have_no_content reward.price.to_s
+  end
+
+  it 'Employee to filter orders by their status' do
+    visit orders_employee_path(employee.id)
+    expect(page).to have_link 'Delivered'
+    expect(page).to have_link 'All'
+    expect(page).to have_link 'Awaiting Delivery'
+    expect(page).to have_content "#{order.id} #{reward.title}"
+    expect(page).to have_content "#{delivered_order.id} #{reward.title}"
+    click_link 'Delivered'
+    expect(page).to have_no_content "#{order.id} #{reward.title}"
+    expect(page).to have_content "#{delivered_order.id} #{reward.title}"
+    click_link 'Awaiting Delivery'
+    expect(page).to have_content "#{order.id} #{reward.title}"
+    expect(page).to have_no_content "#{delivered_order.id} #{reward.title}"
+    click_link 'All'
+    expect(page).to have_content "#{order.id} #{reward.title}"
+    expect(page).to have_content "#{delivered_order.id} #{reward.title}"
   end
 end
