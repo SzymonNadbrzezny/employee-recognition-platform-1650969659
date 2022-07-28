@@ -1,17 +1,17 @@
 class OrdersQuery
-  attr_accessor :initial_scope
+  attr_reader :initial_scope
 
   def initialize(initial_scope = Orders.all)
     @initial_scope = initial_scope
   end
 
   def call(params)
-    filter_by_status(initial_scope, params[:filter_by])
+    filter_by_status(params[:filter_by])
   end
 
   private
 
-  def filter_by_status(scoped, filter = nil)
-    filter ? scoped.where(status: filter) : scoped
+  def filter_by_status(filter = nil)
+    filter ? initial_scope.where(status: filter) : initial_scope
   end
 end
