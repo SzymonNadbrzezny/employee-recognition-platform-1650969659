@@ -43,16 +43,16 @@ RSpec.describe 'Orders handling allows' do
     expect(page).to have_link 'Delivered'
     expect(page).to have_link 'All'
     expect(page).to have_link 'Awaiting Delivery'
-    expect(page).to have_content order.id
-    expect(page).to have_content delivered_order.id
+    expect(page).to have_content "#{order.id} #{reward.title}"
+    expect(page).to have_content "#{delivered_order.id} #{reward.title}"
     click_link 'Delivered'
-    expect(page).to have_no_content order.id
-    expect(page).to have_content delivered_order.id
+    expect(page).to have_no_content "#{order.id} #{reward.title}"
+    expect(page).to have_content "#{delivered_order.id} #{reward.title}"
     click_link 'Awaiting Delivery'
-    expect(page).to have_content order.id
-    expect(page).to have_no_content delivered_order.id
+    expect(page).to have_content "#{order.id} #{reward.title}"
+    expect(page).to have_no_content "#{delivered_order.id} #{reward.title}"
     click_link 'All'
-    expect(page).to have_content order.id
-    expect(page).to have_content delivered_order.id
+    expect(page).to have_content "#{order.id} #{reward.title}"
+    expect(page).to have_content "#{delivered_order.id} #{reward.title}"
   end
 end
