@@ -10,7 +10,7 @@
   </div>
   <div class="dropdown-menu" id="dropdown-menu" role="menu">
     <div class="dropdown-content">
-      <%= link_to "All", orders_employee_path(current_employee.id), class: !params[:filter_by]? 'dropdown-item is-active': 'dropdown-item'%>
+      <%= link_to "All", orders_employee_path(current_employee.id), class: !Order.statuses.include?(params[:filter_by])? 'dropdown-item is-active': 'dropdown-item'%>
       <%= link_to "Delivered", orders_employee_path(current_employee.id,  filter_by: 'delivered'), class: params[:filter_by]=='delivered'? 'dropdown-item is-active': 'dropdown-item' %>
       <%= link_to "Awaiting Delivery", orders_employee_path(current_employee.id,  filter_by: 'awaiting_delivery'), class: params[:filter_by]=='awaiting_delivery'? 'dropdown-item is-active': 'dropdown-item'%>
     </div>
