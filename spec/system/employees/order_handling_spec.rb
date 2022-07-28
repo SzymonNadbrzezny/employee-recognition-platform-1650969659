@@ -51,5 +51,8 @@ RSpec.describe 'Orders handling allows' do
     click_link 'Awaiting Delivery'
     expect(page).to have_content order.id
     expect(page).to have_no_content delivered_order.id
+    click_link 'All'
+    expect(page).to have_content order.id
+    expect(page).to have_content delivered_order.id
   end
 end
