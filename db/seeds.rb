@@ -13,7 +13,7 @@ puts 'Creating employees'
 end
 puts '✅'
 puts 'Creating Admin account'
-Employee.where(email: "gludekpl@gmail.com").first_or_create!(password: 'pass', points: 999) if Rails.env=='production'
+Employee.where(email: "gludekpl@gmail.com").first_or_create!(password: 'mypassword', points: 999) if Rails.env=='production'
 Admin.where(email: "admin@test.com").first_or_create!(password: 'admintest')
 puts '✅'
 puts 'Creating Company values'
