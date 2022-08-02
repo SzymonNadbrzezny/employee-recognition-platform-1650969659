@@ -24,6 +24,7 @@ gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'
 gem 'sendgrid-ruby'
+gem 'premailer-rails'
 
 group :development, :test do
   # Debugging tool
