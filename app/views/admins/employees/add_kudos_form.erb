@@ -1,0 +1,15 @@
+<div class='title'>Add kudos to employees</div>
+<%= form_with method: :patch do |f| %>
+  <div class="field">
+    <%= f.label :number_of_kudos_to_add, class:'label' %>
+    <div class='control'>
+      <%= f.number_field :number_of_kudos_to_add, in: 1..20, class:'input'  %>
+    </div>
+  </div>
+
+  <div class="actions container">
+    <%= f.submit 'Add Kudos', class:'button is-primary' %>
+  </div>
+<% end %>
+<%= link_to 'Back', admins_employees_path, class:'column' %>
+</div>
