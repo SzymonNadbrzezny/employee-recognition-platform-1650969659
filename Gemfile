@@ -23,6 +23,8 @@ gem 'inline_svg'
 gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'
+gem 'premailer-rails'
+gem 'sendgrid-ruby'
 
 group :development, :test do
   # Debugging tool
@@ -33,6 +35,7 @@ group :development, :test do
   gem 'rubocop-rspec', '2.8.0'
   # Tests
   gem 'factory_bot_rails'
+  gem 'letter_opener'
   gem 'rspec-rails', '~> 5.0.0'
 end
 group :test do

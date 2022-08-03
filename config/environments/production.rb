@@ -89,7 +89,17 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
+  config.action_mailer.default_url_options = { host: 'gludek-app.herokuapp.com', protocol: 'https'}
+  config.action_mailer.smtp_settings = {
+    :address   => 'smtp.sendgrid.net',
+    :port      => 587,
+    :domain    => 'gludek-app.herokuapp.com',
+    :user_name => 'apikey',
+    :password  => Rails.application.credentials.sendgrid[:api_key],
+    :authentication => 'plain',
+    :enable_starttls_auto => true 
+  }
+  config.action_mailer.delivery_method = :smtp
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
   # middleware. The `delay` is used to determine how long to wait after a write

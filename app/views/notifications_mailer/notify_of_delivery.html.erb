@@ -1,0 +1,26 @@
+<h1>Hello, </h1>
+    <p>
+      Your order has been delivered.
+    </p>
+
+    <% reward = Reward.from_json(@order.reward)%>
+    <div class='card-header-title'>
+      Order nr. <%= @order.id %>
+    </div>
+  </div>
+  <div class='card-content'>
+    Title:
+    <div class='card-header-title'>
+      <%= reward.title %>
+    </div>
+    Description:
+    <div class='card-header-title'>
+      <%= reward.description %>
+    </div>
+    Price:
+    <div class='card-header-title'>
+      <%= reward.price %>
+    </div>
+  </div>
+
+<p>Have a great day!</p>

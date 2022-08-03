@@ -13,7 +13,8 @@ puts 'Creating employees'
 end
 puts '✅'
 puts 'Creating Admin account'
-Admin.where(email: 'admin@test.com').first_or_create!(password: 'admintest')
+Employee.where(email: "gludekpl@gmail.com").first_or_create!(password: 'mypassword', points: 999) if Rails.env=='production'
+Admin.where(email: "admin@test.com").first_or_create!(password: 'admintest')
 puts '✅'
 puts 'Creating Company values'
 %w[Honesty Ownership Accountability Passion].each do |company_value_title|
@@ -25,9 +26,7 @@ puts 'Creating rewards'
 1.upto(5) do |i|
   print '.'
   Reward.where(title: "Reward nr. #{i}").first_or_create!(description: Faker::TvShows::Supernatural.creature,
-                                                          price: Faker::Number.decimal(
-                                                            l_digits: 1, r_digits: 1
-                                                          ))
+                                                          price: Faker::Number.within(range: 1..10))
 end
 puts '✅'
 puts 'Creating kudos'
