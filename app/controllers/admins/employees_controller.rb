@@ -39,11 +39,18 @@ module Admins
       kudos_to_add = add_kudos_params[:number_of_kudos_to_add].to_i
       if kudos_to_add.between?(1, 20)
         Employee.transaction do
-          Employee.find_each do |employee|
-            employee.increment(:number_of_available_kudos, kudos_to_add).save!
+          begin
+            Employee.find_each do |employee|
+              employee.increment(:number_of_available_kudos, kudos_to_add).save!
+            end
+          rescue ActiveRecord::RecordNotSaved
+            flash[:alert]='Error occured. No kudos were added. Please try again later.'
+            raise ActiveRecord::Rollback
+          else
+            flash[:notice]='Kudos were added successfuly.'
           end
         end
-        redirect_to admins_employees_path, notice: 'Kudos were added to employees.'
+        redirect_to admins_employees_path
       else
         redirect_to add_kudos_form_admins_employees, notice: 'Number of kudos to add must be between 1 and 20.'
       end
