@@ -1,9 +1,5 @@
 <div class='title'>New Kudo</div>
-<% if current_employee.number_of_available_kudos.positive?%>
-  <%= render 'form', kudo: kudo %>
-<% else %>
-  <% controller.redirect_to kudos_path, notice: "Za mała ilość dostępnych kudo"%>
-<% end %>
+<%= render 'form', kudo: kudo %>
 <div class='columns is-vcentered mt-1 has-text-centered'>
   <%= link_to 'Back', kudos_path, class:'column' %>
 </div>

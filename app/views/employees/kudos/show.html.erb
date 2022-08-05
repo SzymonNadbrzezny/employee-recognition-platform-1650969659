@@ -24,6 +24,6 @@
   </div>
 </div>
 <div class='columns is-vcentered mt-1 has-text-centered'>
-  <%= link_to 'Edit', edit_kudo_path(kudo), class:'column' %>
+  <%= link_to 'Edit', edit_kudo_path(kudo), class:'column'  if policy(kudo).created_less_than_5_minutes_ago?%>
   <%= link_to 'Back', kudos_path, class:'column' %>
 </div>
