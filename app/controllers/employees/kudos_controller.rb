@@ -7,16 +7,31 @@ module Employees
 
     # GET /kudos/1
     def show
+      unless policy(kudo).show?
+        flash[:alert] = 'You are not owner of this kudo.'
+        render :index, locals: { kudos: Kudo.includes(:receiver, :giver, :company_value).all }
+        return
+      end
       render :show, locals: { kudo: kudo }
     end
 
     # GET /kudos/new
     def new
+      unless policy(Kudo).new?
+        flash[:alert] = "You don't have available kudos."
+        render :index, locals: { kudos: Kudo.includes(:receiver, :giver, :company_value).all }
+        return
+      end
       render :new, locals: { kudo: Kudo.new }
     end
 
     # GET /kudos/1/edit
     def edit
+      unless policy(kudo).edit?
+        flash[:alert] = 'You are not owner of this kudo or it was created more than 5 minutes ago.'
+        render :index, locals: { kudos: Kudo.includes(:receiver, :giver, :company_value).all }
+        return
+      end
       render :edit, locals: { kudo: kudo }
     end
 
@@ -38,6 +53,11 @@ module Employees
 
     # PATCH/PUT /kudos/1
     def update
+      unless policy(kudo).update?
+        flash[:alert] = 'You are not owner of this kudo or it was created more than 5 minutes ago.'
+        render :index, locals: { kudos: Kudo.includes(:receiver, :giver, :company_value).all }
+        return
+      end
       if kudo.update(kudo_params)
         redirect_to kudos_path, notice: 'Kudo was successfully updated.'
       else
@@ -47,6 +67,11 @@ module Employees
 
     # DELETE /kudos/1
     def destroy
+      unless policy(kudo).destroy?
+        flash[:alert] = 'You are not owner of this kudo or it was created more than 5 minutes ago.'
+        render :index, locals: { kudos: Kudo.includes(:receiver, :giver, :company_value).all }
+        return
+      end
       kudo.receiver.decrement(:points).save if kudo.receiver.points.positive?
       kudo.destroy
       redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
