@@ -48,7 +48,6 @@ RSpec.describe 'Kudo handling' do
       visit root_path
       expect(page).to have_content kudo.title
       expect(page).to have_content 'Destroy'
-      Time.current
       travel 6.minutes
       click_link 'Destroy'
       expect(page).to have_content 'You are not owner of this kudo or it was created more than 5 minutes ago.'

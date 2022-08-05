@@ -25,9 +25,7 @@ describe KudoPolicy do
   end
 
   context 'when Kudo was created less than 5 minutes ago' do
-    Time.current
     it 'permits editing and destroying kudo' do
-      Time.current
       travel 1.minute
       expect(policy).to permit_action(:update)
       expect(policy).to permit_action(:destroy)
@@ -36,7 +34,6 @@ describe KudoPolicy do
 
   context 'when Kudo was created more than 5 minutes ago' do
     it 'forbids editing and destroying kudo' do
-      Time.current
       travel 6.minutes
       expect(policy).to forbid_action(:update)
       expect(policy).to forbid_action(:destroy)

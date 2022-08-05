@@ -12,7 +12,7 @@ class KudoPolicy < ApplicationPolicy
   end
 
   def destroy?
-    creator? && created_less_than_5_minutes_ago?
+    update?
   end
 
   def can_afford?
@@ -20,14 +20,10 @@ class KudoPolicy < ApplicationPolicy
   end
 
   def created_less_than_5_minutes_ago?
-    @record.created_at > five_minutes_ago
+    @record.created_at > 5.minutes.ago
   end
 
   def creator?
     @user == @record.giver
-  end
-
-  def five_minutes_ago
-    5.minutes.ago
   end
 end
