@@ -36,6 +36,7 @@ group :development, :test do
   # Tests
   gem 'factory_bot_rails'
   gem 'letter_opener'
+  gem 'pundit-matchers', '~> 1.7.0'
   gem 'rspec-rails', '~> 5.0.0'
 end
 group :test do
@@ -55,3 +56,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem 'pundit', '~> 2.2'
