@@ -56,4 +56,19 @@ RSpec.describe 'Employee handling allows' do
     click_link 'Destroy'
     expect(page).to have_content 'Employee was successfully destroyed.'
   end
+
+  it 'Admin to add kudos to all employees' do
+    visit admins_employees_path
+
+    expect(page).to have_content 'Add kudos'
+    expect(page).to have_content employee.number_of_available_kudos
+    old_kudos = employee.number_of_available_kudos
+    click_link 'Add kudos'
+
+    fill_in 'number_of_kudos_to_add', with: 5
+    click_button 'Add Kudos'
+    expect(page).to have_content 'Kudos were added successfuly.'
+    expect(page).to have_no_content old_kudos
+    expect(page).to have_content old_kudos + 5
+  end
 end

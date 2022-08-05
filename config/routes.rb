@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   }
   namespace :admins do
     resources :kudos
-    resources :employees, except: :create
+    resources :employees, except: :create do
+      get :add_kudos, on: :collection, to: "employees#add_kudos_form"
+      patch :add_kudos, on: :collection
+    end
     resources :rewards
     resources :company_values
     patch "/orders/:id(.:format)", to: "orders#deliver", as: "order"
