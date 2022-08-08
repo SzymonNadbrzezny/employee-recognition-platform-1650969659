@@ -24,6 +24,7 @@ gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'
 gem 'premailer-rails'
+gem 'pundit', '~> 2.2'
 gem 'sendgrid-ruby'
 
 group :development, :test do
@@ -56,5 +57,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-gem 'pundit', '~> 2.2'
