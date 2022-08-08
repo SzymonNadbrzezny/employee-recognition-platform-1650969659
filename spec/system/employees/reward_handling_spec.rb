@@ -29,9 +29,9 @@ RSpec.describe 'Rewards handling allows' do
 
     it 'shows links to navigate pages' do
       visit rewards_path
-      expect(page).to have_link 'Next >'
+      expect(page).to have_link 'Next ›'
       click_link 'Next ›'
-      expect(page).to have_link '< Prev'
+      expect(page).to have_link '‹ Prev'
     end
 
     it 'allows Employee to see 3 rewards per page' do
