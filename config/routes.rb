@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   end
   scope module: 'employees' do
     resources :kudos
-    resources :rewards, only: %i[index show]
+    resources :rewards, only: %i[index show]  do
+      get 'page/:page', action: :index, on: :collection
+    end
     resources :orders, only: %i[new create]
     resources :employees do
       member do
