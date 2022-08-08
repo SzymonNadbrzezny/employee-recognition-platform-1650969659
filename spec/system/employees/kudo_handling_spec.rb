@@ -40,4 +40,19 @@ RSpec.describe 'Kudo handling' do
     expect(page).to have_content('Avaible Kudos 0')
     expect(page).to have_button('New Kudo', disabled: true)
   end
+
+  context 'when 5 minutes passed after creation Kudo no longer can be destroyed' do
+    let!(:kudo) { create(:kudo, giver: employee) }
+
+    it do
+      visit root_path
+      expect(page).to have_content kudo.title
+      expect(page).to have_content 'Destroy'
+      travel 6.minutes
+      click_link 'Destroy'
+      expect(page).to have_content 'You are not owner of this kudo or it was created more than 5 minutes ago.'
+      expect(page).to have_content kudo.title
+      expect(page).to have_no_content 'Destroy'
+    end
+  end
 end

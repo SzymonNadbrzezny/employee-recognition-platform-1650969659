@@ -1,9 +1,5 @@
 <div class='title'>Editing Kudo</div>
-<% if kudo.giver == current_employee%>
-  <%= render 'form', kudo: kudo %>
-<% else %>
-  <% controller.redirect_to kudos_path%>
-<% end %>
+<%= render 'form', kudo: kudo %>
 <div class='columns is-vcentered mt-1 has-text-centered'>
   <%= link_to 'Show', kudo, class:'column' %>
   <%= link_to 'Back', kudos_path, class:'column' %>
