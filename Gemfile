@@ -20,6 +20,7 @@ gem 'webpacker', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'inline_svg'
+gem 'kaminari'
 gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'
