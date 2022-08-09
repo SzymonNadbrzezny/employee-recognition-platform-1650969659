@@ -22,6 +22,13 @@
     </div>
   </div>
   <div class="field">
+    <%= f.label :categories, class:'label' %>
+    <%= f.label 'Press with CTRL or SHIFT to select multiple', class:'help' %>
+    <div class='control'>
+      <%= select_tag :categories, options_from_collection_for_select(Category.order(:title), "id", "title", reward.categories.ids), multiple: true, size: 2, class:'select is-multiple is-rounded is-medium' %>
+    </div>
+  </div>
+  <div class="field">
     <%= f.label :price, class:'label' %>
     <div class='control'>
       <%= f.number_field :price, value: reward.price, class:'input', step: 0.01 %>

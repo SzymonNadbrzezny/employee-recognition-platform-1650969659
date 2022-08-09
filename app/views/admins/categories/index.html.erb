@@ -1,0 +1,22 @@
+<div class='title'>Categories</div>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Date of creation</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% categories.each do |category| %>
+      <tr>
+        <td><%= category.title %></td>
+        <td><%= category.created_at %></td>
+        <td><%= link_to "Edit", edit_admins_category_path(category) %></td>
+        <td><%= link_to "Destroy", admins_category_path(category), method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+  <%= link_to "New Category", new_admins_category_path, class: "button is-primary" %>
