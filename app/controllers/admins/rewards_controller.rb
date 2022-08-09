@@ -18,6 +18,7 @@ module Admins
 
     def create
       @reward = Reward.new(reward_params)
+      reward.categories << Category.where(id: params[:categories])
 
       if reward.save
         redirect_to admins_rewards_path, notice: 'Reward was successfully created.'
@@ -32,6 +33,7 @@ module Admins
     end
 
     def update
+      reward.categories = Category.where(id: params[:categories])
       if reward.update(reward_params)
         redirect_to admins_rewards_path, notice: 'Reward was successfully updated.'
       else
@@ -46,7 +48,7 @@ module Admins
     end
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price)
+      params.require(:reward).permit(:title, :description, :price, :categories)
     end
   end
 end
