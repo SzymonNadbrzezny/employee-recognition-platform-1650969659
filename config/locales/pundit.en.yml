@@ -1,0 +1,5 @@
+en:
+  pundit:
+    default: 'You cannot perform this action.'
+    admins/category_policy:
+      destroy?: 'You cannot destroy reward that is assigned to rewards!'
