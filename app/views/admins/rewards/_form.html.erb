@@ -22,10 +22,10 @@
     </div>
   </div>
   <div class="field">
-    <%= f.label :categories, class:'label' %>
+    <%= f.label :category_ids, 'Categories', class:'label' %>
     <%= f.label 'Press with CTRL or SHIFT to select multiple', class:'help' %>
     <div class='control'>
-      <%= select_tag :categories, options_from_collection_for_select(Category.order(:title), "id", "title", reward.categories.ids), multiple: true, size: 2, class:'select is-multiple is-rounded is-medium' %>
+      <%= select_tag :category_ids, options_from_collection_for_select(Category.order(:title), "id", "title", reward.category_ids), multiple: true, size: 2, class:'select is-multiple is-rounded is-medium' %>
     </div>
   </div>
   <div class="field">
