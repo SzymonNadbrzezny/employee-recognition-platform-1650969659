@@ -13,7 +13,7 @@
         <td><%= category.title %></td>
         <td><%= category.created_at %></td>
         <td><%= link_to "Edit", edit_admins_category_path(category) %></td>
-        <td><%= link_to "Destroy", admins_category_path(category), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <td><%= link_to "Destroy", admins_category_path(category), method: :delete, data: { confirm: "Are you sure?" } if policy([:admins, category]).destroy?%></td>
       </tr>
     <% end %>
   </tbody>
