@@ -1,10 +1,10 @@
 module Admins
   class CategoryPolicy < ApplicationPolicy
     def destroy?
-      not_assigned?
+      without_rewards?
     end
 
-    def not_assigned?
+    def without_rewards?
       @record.rewards.size.zero?
     end
   end
