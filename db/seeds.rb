@@ -21,8 +21,12 @@ puts 'Creating Company values'
   print '.'
   CompanyValue.where(title: company_value_title).first_or_create!
 end
+puts '✅'
 puts 'Creating Categories'
-5.times { Category.where(title: Faker::Book.genre ).first_or_create! }
+5.times do 
+  puts '.'
+  Category.where(title: Faker::Book.genre ).first_or_create!
+end
 puts '✅'
 puts 'Creating rewards'
 1.upto(5) do |i|
