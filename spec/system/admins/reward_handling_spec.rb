@@ -41,8 +41,7 @@ RSpec.describe 'Rewards handling allows' do
     expect(page).to have_no_content 'Price must be greater than or equal to 1'
     select category.title, from: 'categories'
     click_on 'Create Reward'
-    expect(page).to have_no_content 'Categories can\'t be blank'
-
+    
     expect(page).to have_content 'new test title'
     expect(page).to have_content 'new description'
     expect(page).to have_content '3.5'
