@@ -30,7 +30,7 @@ RSpec.describe 'Category handling allows' do
     fill_in 'reward_price', with: 3.5
     click_on 'Create Reward'
     expect(page).to have_content 'Categories can\'t be blank'
-    select 'Newest', from: 'categories'
+    select 'Newest', from: 'category_ids'
     click_on 'Create Reward'
     expect(page).to have_no_content 'Categories can\'t be blank'
   end
