@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_09_134010) do
+ActiveRecord::Schema.define(version: 2022_08_12_130650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,11 +33,12 @@ ActiveRecord::Schema.define(version: 2022_08_09_134010) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "categorized_rewards", id: false, force: :cascade do |t|
+  create_table "categories_rewards", id: false, force: :cascade do |t|
     t.bigint "reward_id"
     t.bigint "category_id"
-    t.index ["category_id"], name: "index_categorized_rewards_on_category_id"
-    t.index ["reward_id"], name: "index_categorized_rewards_on_reward_id"
+    t.index ["category_id", "reward_id"], name: "index_categories_rewards_on_category_id_and_reward_id", unique: true
+    t.index ["category_id"], name: "index_categories_rewards_on_category_id"
+    t.index ["reward_id"], name: "index_categories_rewards_on_reward_id"
   end
 
   create_table "company_values", force: :cascade do |t|
