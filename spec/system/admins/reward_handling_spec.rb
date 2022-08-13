@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Rewards handling allows' do
   let!(:admin) { create(:admin) }
   let!(:reward) { create(:reward) }
+  let!(:category) { create(:category) }
 
   before do
     sign_in admin
@@ -27,6 +28,7 @@ RSpec.describe 'Rewards handling allows' do
     fill_in 'reward_title', with: 'new test title'
     click_on 'Create Reward'
     expect(page).to have_content 'Description can\'t be blank'
+    expect(page).to have_content 'Categories can\'t be blank'
     expect(page).to have_content 'Price can\'t be blank'
     fill_in 'reward_description', with: 'new description'
     click_on 'Create Reward'
@@ -37,6 +39,8 @@ RSpec.describe 'Rewards handling allows' do
     fill_in 'reward_price', with: 3.5
     click_on 'Create Reward'
     expect(page).to have_no_content 'Price must be greater than or equal to 1'
+    select category.title, from: 'category_ids'
+    click_on 'Create Reward'
 
     expect(page).to have_content 'new test title'
     expect(page).to have_content 'new description'

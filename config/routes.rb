@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   }
   namespace :admins do
     resources :kudos
+    resources :categories, except: :show
     resources :employees, except: :create do
       get :add_kudos, on: :collection, to: "employees#add_kudos_form"
       patch :add_kudos, on: :collection

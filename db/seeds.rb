@@ -22,11 +22,19 @@ puts 'Creating Company values'
   CompanyValue.where(title: company_value_title).first_or_create!
 end
 puts '✅'
+puts 'Creating Categories'
+5.times do 
+  puts '.'
+  Category.where(title: Faker::Book.genre ).first_or_create!
+end
+puts '✅'
 puts 'Creating rewards'
 1.upto(5) do |i|
   print '.'
   Reward.where(title: "Reward nr. #{i}").first_or_create!(description: Faker::TvShows::Supernatural.creature,
-                                                          price: Faker::Number.within(range: 1..10))
+                                                          price: Faker::Number.within(range: 1..10),
+                                                          categories: [Category.all.sample]
+                                                        )
 end
 puts '✅'
 puts 'Creating kudos'
