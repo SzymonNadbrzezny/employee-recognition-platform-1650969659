@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   scope module: 'employees' do
     resources :kudos
     resources :rewards, only: %i[index show]  do
-      get 'page/:page', action: :index, on: :collection
+      get '(category/:category)(/page/:page)', action: :index, on: :collection, as: ''
     end
     resources :orders, only: %i[new create]
     resources :employees do
