@@ -1,8 +1,10 @@
 module Employees
   class RewardsController < EmployeesController
     def index
-      @rewards = Reward.page params[:page]
-      render :index, locals: { rewards: @rewards }
+      @rewards = RewardsQuery.new.call(params).page params[:page]
+      categories = Category.all
+      valid_category = categories.map(&:title).include?(params[:category])
+      render :index, locals: { rewards: @rewards, categories: categories, valid_category: valid_category }
     end
 
     def show

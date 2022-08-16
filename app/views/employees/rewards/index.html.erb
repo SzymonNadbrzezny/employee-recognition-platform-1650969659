@@ -1,26 +1,49 @@
-<div class='title'>Reward</div>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Price</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% rewards.each do |reward| %>
+<div class='title'>Rewards <%="| #{params[:category]}" if valid_category%></div>
+<div class="dropdown is-hoverable is-pulled-right">
+  <div class="dropdown-trigger">
+    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+      <span>Filter</span>
+      <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+    <div class="dropdown-content">
+      <%= link_to "All", rewards_path, class: class_names('dropdown-item', { 'is-active': !valid_category }) %>
+      <% categories.each do |cat|%>
+        <%= link_to cat.title, rewards_url(category: cat.title), class: class_names('dropdown-item', { 'is-active': params[:category]==cat.title })%>
+        <% end %>
+    </div>
+  </div>
+</div>
+<% if rewards.empty? %>
+  There are no rewards in this category at the moment.
+<% else %>
+  <table>
+    <thead>
       <tr>
-        <td><%= reward.title %></td>
-        <td><%= reward.price %></td>
-        <td>
-        <% if current_employee.points >= reward.price%>
-        <%= link_to "Buy", new_order_path(reward) %>
-        <%end%>
-        </td>
-        <td><%= link_to "Show", reward_path(reward) %></td>
+        <th>Title</th>
+        <th>Price</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      
+      <% rewards.each do |reward| %>
+        <tr>
+          <td><%= reward.title %></td>
+          <td><%= reward.price %></td>
+          <td>
+          <% if current_employee.points >= reward.price%>
+          <%= link_to "Buy", new_order_path(reward) %>
+          <%end%>
+          </td>
+          <td><%= link_to "Show", reward_path(reward) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 <br>
 <%= paginate @rewards, window: 1, outer_window: 1%>

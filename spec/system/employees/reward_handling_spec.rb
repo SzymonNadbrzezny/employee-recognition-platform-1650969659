@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Rewards handling allows' do
   let!(:employee) { create(:employee) }
   let!(:reward) { create(:reward) }
+  let!(:category) { create(:category) }
 
   before do
     sign_in employee
@@ -22,6 +23,21 @@ RSpec.describe 'Rewards handling allows' do
     expect(page).to have_content reward.title
     expect(page).to have_content reward.description
     expect(page).to have_content reward.price
+  end
+
+  it 'Employee to filter rewards by category' do
+    visit rewards_path
+
+    expect(page).to have_content reward.title
+    expect(page).to have_link reward.categories[0].title
+    expect(page).to have_link category.title
+    click_link reward.categories[0].title
+    expect(page).to have_content reward.title
+    expect(page).to have_content "Rewards | #{reward.categories[0].title}"
+    click_link category.title
+    expect(page).to have_content "Rewards | #{category.title}"
+    expect(page).to have_no_content reward.title
+    expect(page).to have_content 'There are no rewards in this category at the moment.'
   end
 
   context 'when there are more than 3 rewards' do
