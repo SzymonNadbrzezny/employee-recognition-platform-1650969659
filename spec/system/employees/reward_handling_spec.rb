@@ -37,7 +37,7 @@ RSpec.describe 'Rewards handling allows' do
     click_link category.title
     expect(page).to have_content "Rewards | #{category.title}"
     expect(page).to have_no_content reward.title
-    expect(page).to have_content "There are no rewards in this category at the moment."
+    expect(page).to have_content 'There are no rewards in this category at the moment.'
   end
 
   context 'when there are more than 3 rewards' do
