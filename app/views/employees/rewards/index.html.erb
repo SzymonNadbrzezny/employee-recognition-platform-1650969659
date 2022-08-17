@@ -25,6 +25,7 @@
       <tr>
         <th>Title</th>
         <th>Price</th>
+        <th>Photo</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -34,6 +35,7 @@
         <tr>
           <td><%= reward.title %></td>
           <td><%= reward.price %></td>
+          <td ><%= image_tag reward.picture, size: '20', class: 'image is-48x48' if reward.picture.attached?%></td>
           <td>
           <% if current_employee.points >= reward.price%>
           <%= link_to "Buy", new_order_path(reward) %>
