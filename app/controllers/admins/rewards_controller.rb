@@ -33,6 +33,7 @@ module Admins
 
     def update
       reward.category_ids = params[:category_ids]
+      reward.picture.attach(params[:picture])
       if reward.update(reward_params)
         redirect_to admins_rewards_path, notice: 'Reward was successfully updated.'
       else
@@ -47,7 +48,7 @@ module Admins
     end
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price, :category_ids)
+      params.require(:reward).permit(:title, :description, :price,:picture, :category_ids)
     end
   end
 end

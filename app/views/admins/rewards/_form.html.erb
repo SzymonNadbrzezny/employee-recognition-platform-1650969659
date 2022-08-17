@@ -34,6 +34,17 @@
       <%= f.number_field :price, value: reward.price, class:'input', step: 0.01 %>
     </div>
   </div>
+  <div class="file is-boxed is-centered">
+    <label class="file-label">
+      <%= f.file_field :picture, class:'file-input', accept: 'image/png,image/gif,image/jpeg' %>
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
+        </span>
+        <%= f.label :picture, class:'file-label' %>
+      </span>
+    </label>
+  </div>
   <div class="actions container">
     <%= f.submit class:'button is-primary' %>
   </div>
