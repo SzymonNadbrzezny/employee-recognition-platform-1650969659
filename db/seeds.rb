@@ -24,7 +24,7 @@ end
 puts '✅'
 puts 'Creating Categories'
 5.times do 
-  puts '.'
+  print '.'
   Category.where(title: Faker::Book.genre ).first_or_create!
 end
 puts '✅'
