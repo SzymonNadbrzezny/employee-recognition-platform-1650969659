@@ -10,7 +10,7 @@ module Employees
     end
 
     def show
-      reward = order.reward.to_json
+      reward = order.reward
       render :show, locals: { order: order, reward: reward }
     end
 
@@ -23,13 +23,12 @@ module Employees
 
     def create
       @order = Order.new(order_params)
-      ordered_reward = Reward.from_json(order.reward)
-      reward = Reward.find_by(id: ordered_reward.id)
+      order.reward_price = order.reward.price
       order.buyer = current_employee
-      if order.buyer.points < ordered_reward.price
+      if order.buyer.points < order.reward_price
         redirect_to rewards_path, alert: 'Not enough points'
       elsif order.save
-        order.buyer.decrement(:points, ordered_reward.price).save
+        order.buyer.decrement(:points, order.reward_price).save
         redirect_to rewards_path, notice: 'Order was successfully created.'
       else
         render :new, locals: { order: order, reward: reward }
@@ -43,7 +42,7 @@ module Employees
     end
 
     def order_params
-      params.require(:order).permit(:reward)
+      params.require(:order).permit(:reward_id)
     end
   end
 end
