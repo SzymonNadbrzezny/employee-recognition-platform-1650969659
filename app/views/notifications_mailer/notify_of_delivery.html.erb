@@ -3,7 +3,7 @@
       Your order has been delivered.
     </p>
 
-    <% reward = Reward.from_json(@order.reward)%>
+    <% reward = @order.reward%>
     <div class='card-header-title'>
       Order nr. <%= @order.id %>
     </div>
