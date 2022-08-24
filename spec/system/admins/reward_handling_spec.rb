@@ -5,6 +5,10 @@ RSpec.describe 'Rewards handling allows' do
   let!(:reward) { create(:reward) }
   let!(:category) { create(:category) }
 
+  after do
+    FileUtils.rm_rf(ActiveStorage::Blob.service.root)
+  end
+
   before do
     sign_in admin
   end
@@ -53,5 +57,15 @@ RSpec.describe 'Rewards handling allows' do
     expect(page).to have_content 'Reward was successfully updated.'
     click_link 'Destroy', match: :first
     expect(page).to have_content 'Reward was successfully destroyed.'
+  end
+
+  it 'Admin to attach photo to Reward' do
+    visit admins_rewards_path
+    click_link 'Edit'
+    attach_file 'reward_picture', Rails.root.join('spec/fixtures/files/reward_photo.png')
+    click_on 'Update Reward'
+    reward.reload
+    expect(reward.picture.attached?).to eq true
+    expect(page).to have_content 'Reward was successfully updated.'
   end
 end

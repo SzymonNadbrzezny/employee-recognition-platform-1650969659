@@ -17,6 +17,7 @@ gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'azure-storage-blob', '~> 2.0', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'inline_svg'
@@ -58,3 +59,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem 'active_storage_validations', '~> 0.9.8'
