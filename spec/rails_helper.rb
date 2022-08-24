@@ -66,4 +66,5 @@ RSpec.configure do |config|
     driven_by(:rack_test)
   end
   config.include ActiveSupport::Testing::TimeHelpers
+  config.include ActiveStorageValidations::Matchers
 end
