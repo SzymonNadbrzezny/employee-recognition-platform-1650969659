@@ -2,7 +2,7 @@ class RewardsQuery
   attr_reader :initial_scope
 
   def initialize(params, is_using_pictures: false)
-    @params=params
+    @params = params
     initilize_collection(is_using_pictures: is_using_pictures)
   end
 
@@ -12,7 +12,7 @@ class RewardsQuery
 
   private
 
-  def initilize_collection(initial_scope = Reward.all,is_using_pictures:)
+  def initilize_collection(initial_scope = Reward.all, is_using_pictures:)
     @initial_scope = is_using_pictures ? initial_scope.with_attached_picture : initial_scope
   end
 
