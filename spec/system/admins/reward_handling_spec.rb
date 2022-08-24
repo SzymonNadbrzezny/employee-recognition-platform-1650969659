@@ -64,6 +64,7 @@ RSpec.describe 'Rewards handling allows' do
     click_link 'Edit'
     attach_file 'reward_picture', Rails.root.join('spec/fixtures/files/reward_photo.png')
     click_on 'Update Reward'
+    reward.reload
     expect(reward.picture.attached?).to eq true
     expect(page).to have_content 'Reward was successfully updated.'
   end
