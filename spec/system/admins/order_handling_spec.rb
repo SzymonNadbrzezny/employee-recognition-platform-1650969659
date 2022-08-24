@@ -4,7 +4,7 @@ RSpec.describe 'Orders handling allows' do
   let!(:admin) { create(:admin) }
   let!(:employee) { create(:employee, points: 10) }
   let!(:reward) { create(:reward, price: 2) }
-  let!(:order) { create(:order, buyer: employee, reward: reward.to_json) }
+  let!(:order) { create(:order, buyer: employee, reward: reward) }
 
   before do
     sign_in admin

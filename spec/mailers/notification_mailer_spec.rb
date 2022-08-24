@@ -4,7 +4,7 @@ RSpec.describe 'Notifications', type: :mailer do
   describe '- delivery' do
     let!(:employee) { create(:employee, points: 10) }
     let!(:reward) { create(:reward, price: 2) }
-    let!(:order) { create(:order, buyer: employee, reward: reward.to_json) }
+    let!(:order) { create(:order, buyer: employee, reward: reward) }
     let(:mail) { NotificationsMailer.with(employee: employee, order: order).notify_of_delivery }
 
     it 'renders the headers' do
