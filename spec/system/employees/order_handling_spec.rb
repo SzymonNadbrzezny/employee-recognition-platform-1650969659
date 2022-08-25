@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Orders handling allows' do
   let!(:employee) { create(:employee, points: 10) }
   let!(:reward) { create(:reward, price: 2) }
-  let!(:order) { create(:order, buyer: employee, reward: reward.to_json) }
-  let!(:delivered_order) { create(:order, buyer: employee, reward: reward.to_json, status: :delivered) }
+  let!(:order) { create(:order, buyer: employee, reward: reward) }
+  let!(:delivered_order) { create(:order, buyer: employee, reward: reward, status: :delivered) }
 
   before do
     sign_in employee

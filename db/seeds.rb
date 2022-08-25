@@ -54,6 +54,6 @@ puts 'Creating orders'
   print '.'
   employee=Employee.find_by(email: "employee#{i}@test.com")
   Order.create(buyer: employee,
-              reward: Reward.all.sample.to_json)
+              reward: Reward.all.sample)
 end
 puts '✅'
