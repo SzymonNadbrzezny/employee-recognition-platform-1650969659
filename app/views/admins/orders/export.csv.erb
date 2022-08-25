@@ -1,5 +1,0 @@
-<%- headers = Order.attribute_names-%>
-<%= CSV.generate_line headers.map &:upcase  %>
-<%- orders.each do |order| -%>
-<%=CSV.generate_line( headers.map { |attribute| order[attribute] }) -%>
-<%- end -%>
