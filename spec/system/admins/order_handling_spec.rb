@@ -37,6 +37,6 @@ RSpec.describe 'Orders handling allows' do
     Order.attribute_names.each do |attribute|
       expect(page).to have_content attribute.upcase
       expect(page).to have_content order[attribute]
-    end 
+    end
   end
 end
