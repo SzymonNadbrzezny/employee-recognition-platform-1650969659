@@ -43,7 +43,7 @@ RSpec.describe 'Rewards handling allows' do
     fill_in 'reward_price', with: 3.5
     click_on 'Create Reward'
     expect(page).to have_no_content 'Price must be greater than or equal to 1'
-    select category.title, from: 'category_ids'
+    select category.title, from: 'category_ids', match: :smart
     click_on 'Create Reward'
 
     expect(page).to have_content 'new test title'

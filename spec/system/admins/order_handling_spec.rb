@@ -4,7 +4,7 @@ RSpec.describe 'Orders handling allows' do
   let!(:admin) { create(:admin) }
   let!(:employee) { create(:employee, points: 10) }
   let!(:reward) { create(:reward, price: 2) }
-  let!(:order) { create(:order, buyer: employee, reward: reward.to_json) }
+  let!(:order) { create(:order, buyer: employee, reward: reward) }
 
   before do
     sign_in admin
@@ -28,5 +28,15 @@ RSpec.describe 'Orders handling allows' do
     expect(page).to have_content 'Order was successfully updated.'
     expect(page).to have_content 'Delivered'
     expect(page).to have_no_link 'Deliver'
+  end
+
+  it 'Admin to export all orders to csv file' do
+    visit admins_root_path
+    expect(page).to have_link 'Export orders'
+    click_link 'Export orders'
+    Order.attribute_names.each do |attribute|
+      expect(page).to have_content attribute.upcase
+      expect(page).to have_content order[attribute]
+    end
   end
 end
