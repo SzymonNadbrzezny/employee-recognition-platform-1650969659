@@ -10,7 +10,7 @@ module Admins
       end
     end
 
-    def export
+    def export_csv
       orders = Order.all
       respond_to do |format|
         format.csv do

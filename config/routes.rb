@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :rewards
     resources :company_values
     patch "/orders/:id(.:format)", to: "orders#deliver", as: "order"
-    get "/orders/export", to: "orders#export", as: "orders_export"
+    get "/orders/export", to: "orders#export_csv", as: "orders_export"
     root to: 'pages#dashboard'
   end
   scope module: 'employees' do
