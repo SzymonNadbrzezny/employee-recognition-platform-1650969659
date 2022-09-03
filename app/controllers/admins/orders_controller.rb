@@ -10,13 +10,13 @@ module Admins
       end
     end
 
-    def export_csv
+    def export_to_csv
       orders = Order.all
       respond_to do |format|
         format.csv do
           response.headers['Content-Type'] = 'text/csv'
           response.headers['Content-Disposition'] = 'attachment; filename=orders.csv'
-          render '/admins/orders/export_to_csv', locals: { orders: orders }
+          render '/admins/orders/export_csv', locals: { orders: orders }
         end
       end
     end
