@@ -1,5 +1,6 @@
 module Admins
   class RewardsController < AdminsController
+    require 'csv'
     def index
       render :index, locals: { rewards: Reward.all }
     end
@@ -26,6 +27,31 @@ module Admins
       end
     end
 
+    def import
+      rewards_file = params[:reward_file].open
+      rewards = rewards_hash(CSV.parse(rewards_file.read, col_sep: ','))
+      if rewards.pluck(:title).uniq.length != rewards.length
+        redirect_to import_admins_rewards_path, alert: 'There is more than one entry per reward!'
+        return
+      end
+      begin
+        RewardImporter.call(rewards)
+      rescue ActiveRecord::AssociationTypeMismatch
+        flash.now[:alert] = 'At least one reward was assigned to not existing category!'
+        render :import_form
+      rescue ActiveRecord::RecordNotSaved
+        flash.now[:alert] = 'There was problem with saving rewards!'
+        render :import_form
+      else
+        rewards_file.close
+        redirect_to admins_rewards_path, notice: 'Rewards were successfuly imported.'
+      end
+    end
+
+    def import_form
+      render :import_form
+    end
+
     def destroy
       reward.destroy
       redirect_to admins_rewards_url, notice: 'Reward was successfully destroyed.'
@@ -42,6 +68,12 @@ module Admins
     end
 
     private
+
+    def rewards_hash(rewards_array)
+      rewards = rewards_array.map { |r| r.map!(&:strip) }
+      headers = rewards.shift.map(&:to_sym)
+      rewards.map! { |row| row.map.with_index { |v, i| [headers[i], v] }.to_h }
+    end
 
     def reward
       @reward ||= Reward.find(params[:id])
