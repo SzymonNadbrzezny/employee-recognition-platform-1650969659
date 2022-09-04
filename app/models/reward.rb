@@ -5,6 +5,7 @@ class Reward < ApplicationRecord
   has_one_attached :picture
 
   validates :title, :description, :price, presence: true
+  validates :title, uniqueness: true
   validates :price, numericality: { greater_than_or_equal_to: 1 }
   validates :categories, presence: true
   validates :picture, content_type: ['image/png', 'image/jpg']
