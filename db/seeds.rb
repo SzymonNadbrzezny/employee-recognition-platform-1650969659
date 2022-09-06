@@ -53,7 +53,9 @@ puts 'Creating orders'
 1.upto(5) do |i|
   print '.'
   employee=Employee.find_by(email: "employee#{i}@test.com")
+  reward=Reward.all.sample
   Order.create(buyer: employee,
-              reward: Reward.all.sample)
+              reward: reward,
+              reward_price: reward.price)
 end
 puts '✅'

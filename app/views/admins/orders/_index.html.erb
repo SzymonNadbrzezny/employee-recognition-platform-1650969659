@@ -16,7 +16,7 @@
         <td><%= order.id %></td>
         <td><%= reward.title %></td>
         <td><%= reward.description %></td>
-        <td><%= reward.price %></td>
+        <td><%= order.reward_price %></td>
         <td><%= order.created_at %></td>
         <td><% if !order.delivered? %>
         <%= link_to "Deliver", admins_order_path(order), method: :patch, data: { confirm: "Are you sure?" } %>
