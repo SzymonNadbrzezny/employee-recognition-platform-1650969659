@@ -80,7 +80,7 @@ RSpec.describe 'Rewards handling allows' do
       click_link 'Import Rewards'
       attach_file 'reward_file', reward_file_path.join('rewards_incorrect_category.csv')
       click_button 'Import Rewards'
-      expect(page).to have_content 'At least one reward was assigned to not existing category!'
+      expect(page).to have_content 'Category with this title doesn\'t exit in row: 0'
     end
 
     it '- fails one reward is updated multiple times in one import file' do
@@ -88,7 +88,7 @@ RSpec.describe 'Rewards handling allows' do
       click_link 'Import Rewards'
       attach_file 'reward_file', reward_file_path.join('rewards_not_unique_entries.csv')
       click_button 'Import Rewards'
-      expect(page).to have_content 'There is more than one entry per reward!'
+      expect(page).to have_content 'There is more than one entry per reward for rewards with titles: "reward_title1"'
     end
 
     it '- succedes when file is correct' do
@@ -98,7 +98,7 @@ RSpec.describe 'Rewards handling allows' do
       click_link 'Import Rewards'
       attach_file 'reward_file', reward_file_path.join('rewards_correct.csv')
       click_button 'Import Rewards'
-      expect(page).to have_content 'Rewards were successfuly imported.'
+      expect(page).to have_content 'Successfuly imported 2 rewards.'
       reward.reload
       expect(reward.categories[0]).to eq(import_category2)
       expect(page).to have_content 'reward_title2'
