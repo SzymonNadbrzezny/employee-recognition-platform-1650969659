@@ -29,22 +29,14 @@ module Admins
 
     def import
       rewards_file = params[:reward_file].open
-      rewards = rewards_hash(CSV.parse(rewards_file.read, col_sep: ','))
-      if rewards.pluck(:title).uniq.length != rewards.length
-        redirect_to import_admins_rewards_path, alert: 'There is more than one entry per reward!'
-        return
-      end
-      begin
-        RewardImporter.call(rewards)
-      rescue ActiveRecord::AssociationTypeMismatch
-        flash.now[:alert] = 'At least one reward was assigned to not existing category!'
-        render :import_form
-      rescue ActiveRecord::RecordNotSaved
-        flash.now[:alert] = 'There was problem with saving rewards!'
-        render :import_form
+      result = RewardImporter.call(rewards_file)
+      if result.success?
+        redirect_to admins_rewards_path, notice: "Successfuly imported #{result.value!(:count)} rewards."
       else
-        rewards_file.close
-        redirect_to admins_rewards_path, notice: 'Rewards were successfuly imported.'
+        flash.now[:alert] = "Error occured during importing.
+                             #{result.failure[:error]} in row: #{result.failure[:row]}
+                            "
+        render :import_form
       end
     end
 
