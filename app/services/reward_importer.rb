@@ -38,7 +38,7 @@ class RewardImporter < ApplicationService
         end
 
         result[:success?] = true
-        result[:value!] = Hash.new(count: rewards.length, imported_reward_titles: rewards.pluck(:title))
+        result[:value!] = { count: rewards.length, imported_reward_titles: rewards.pluck(:title) }
       end
     rescue ActiveRecord::RecordNotSaved
       result[:success?] = false
