@@ -31,7 +31,7 @@ module Admins
       rewards_file = params[:reward_file].open
       result = RewardImporter.call(rewards_file)
       if result.success?
-        redirect_to admins_rewards_path, notice: "Successfuly imported #{result.value!(:count)}"
+        redirect_to admins_rewards_path, notice: "Successfuly imported #{result.value!(:count)} rewards."
       else
         flash.now[:alert] = "Error occured during importing.
                              #{result.failure[:error]} in row: #{result.failure[:row]}
