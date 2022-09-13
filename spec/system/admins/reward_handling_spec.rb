@@ -83,14 +83,6 @@ RSpec.describe 'Rewards handling allows' do
       expect(page).to have_content 'Category with this title doesn\'t exit in row: 0'
     end
 
-    it '- fails one reward is updated multiple times in one import file' do
-      visit admins_rewards_path
-      click_link 'Import Rewards'
-      attach_file 'reward_file', reward_file_path.join('rewards_not_unique_entries.csv')
-      click_button 'Import Rewards'
-      expect(page).to have_content 'There is more than one entry per reward for rewards with titles: "reward_title1"'
-    end
-
     it '- succedes when file is correct' do
       visit admins_rewards_path
       expect(page).to have_content reward.title
