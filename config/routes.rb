@@ -16,8 +16,8 @@ Rails.application.routes.draw do
       patch :add_kudos, on: :collection
     end
     resources :rewards do
-      post :import, on: :collection, to: "rewards#import_form"
-      put :import, on: :collection
+      get :import, on: :collection, to: "rewards#import_form"
+      post :import, on: :collection, to: "rewards#import"
     end
     resources :company_values
     patch "/orders/:id(.:format)", to: "orders#deliver", as: "order"
