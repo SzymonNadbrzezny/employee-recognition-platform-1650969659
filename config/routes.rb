@@ -15,7 +15,10 @@ Rails.application.routes.draw do
       get :add_kudos, on: :collection, to: "employees#add_kudos_form"
       patch :add_kudos, on: :collection
     end
-    resources :rewards
+    resources :rewards do
+      get :import, on: :collection, to: "rewards#import_form"
+      post :import, on: :collection, to: "rewards#import"
+    end
     resources :company_values
     patch "/orders/:id(.:format)", to: "orders#deliver", as: "order"
     get "/orders/export", to: "orders#export_to_csv", as: "orders_export"

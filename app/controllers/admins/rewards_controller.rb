@@ -1,5 +1,6 @@
 module Admins
   class RewardsController < AdminsController
+    require 'csv'
     def index
       render :index, locals: { rewards: Reward.all }
     end
@@ -26,6 +27,23 @@ module Admins
       end
     end
 
+    def import
+      rewards_file = params[:reward_file].open
+      result = RewardImporter.call(rewards_file)
+      if result.success?
+        redirect_to admins_rewards_path, notice: "Successfuly imported #{result.value!(:count)} rewards."
+      else
+        flash.now[:alert] = "Error occured during importing.
+                             #{result.failure[:error]} in row: #{result.failure[:row]}
+                            "
+        render :import_form
+      end
+    end
+
+    def import_form
+      render :import_form
+    end
+
     def destroy
       reward.destroy
       redirect_to admins_rewards_url, notice: 'Reward was successfully destroyed.'
@@ -42,6 +60,12 @@ module Admins
     end
 
     private
+
+    def rewards_hash(rewards_array)
+      rewards = rewards_array.map { |r| r.map!(&:strip) }
+      headers = rewards.shift.map(&:to_sym)
+      rewards.map! { |row| row.map.with_index { |v, i| [headers[i], v] }.to_h }
+    end
 
     def reward
       @reward ||= Reward.find(params[:id])

@@ -1,0 +1,22 @@
+<div class='title'>Import Rewards</div>
+<%= form_with method: :post do |f| %>
+  <div class="field">
+  <div class="file is-boxed is-centered">
+    <label class="file-label">
+      <%= f.file_field :reward_file, class:'file-input', accept: 'test/csv' %>
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
+        </span>
+        <%= f.label :reward_file, class:'file-label' %>
+      </span>
+    </label>
+  </div>
+
+  <div class="actions container">
+    <%= f.submit 'Import Rewards', class:'button is-primary' %>
+  </div>
+<% end %>
+<div class='columns is-vcentered mt-1 has-text-centered'>
+  <%= link_to 'Back', admins_rewards_path, class:'column' %>
+</div>
