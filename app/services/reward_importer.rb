@@ -5,21 +5,12 @@ class RewardImporter < ApplicationService
   def initialize(rewards_file)
     @result = { success?: nil, failure: Hash.new(error: '', row: nil) }
     rewards = array_of_reward_hashes(CSV.parse(rewards_file.read, col_sep: ','))
-    if rewards.pluck(:title).uniq.length != rewards.length
-      duplicate_titles = rewards.pluck(:title).group_by { |e| e }.select { |_, v| v.size > 1 }.keys
-      result[:success?] = false
-      result[:failure][:error] = "There is more than one entry per reward for rewards with titles:
-      \"#{duplicate_titles.join('", "')}\"!"
-      result[:failure][:row] = 0
-    end
     rewards_file.close
     @rewards = rewards
   end
   # rubocop:enable Lint/MissingSuper
 
   def call
-    return self unless result[:success?].nil?
-
     begin
       Reward.transaction do
         rewards.each_with_index do |reward_values, i|

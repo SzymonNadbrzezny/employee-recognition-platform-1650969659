@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       patch :add_kudos, on: :collection
     end
     resources :rewards do
-      get :import, on: :collection, to: "rewards#import_form"
+      post :import, on: :collection, to: "rewards#import_form"
       put :import, on: :collection
     end
     resources :company_values

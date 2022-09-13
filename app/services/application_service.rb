@@ -1,10 +1,6 @@
 class ApplicationService
   attr_reader :result
 
-  def initialize
-    raise 'Implement initilization'
-  end
-
   def self.call(...)
     new(...).call
   end
