@@ -1,0 +1,7 @@
+<div class='title'>Editing employee</div>
+<%= render 'form', employee: current_employee %>
+
+<div class='columns is-vcentered mt-1 has-text-centered'>
+  <%= link_to 'Show', employee_path(current_employee), class:'column' %>
+  <%= link_to 'Back', :back, class:'column' %>
+</div>
