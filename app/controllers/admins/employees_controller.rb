@@ -66,7 +66,7 @@ module Admins
     end
 
     def employee_params
-      params.require(:employee).permit(:email, :number_of_available_kudos, :password)
+      params.require(:employee).permit(:email, :number_of_available_kudos, :password, :first_name, :last_name)
     end
   end
 end
