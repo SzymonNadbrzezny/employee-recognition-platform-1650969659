@@ -1,0 +1,37 @@
+<div class='card'>
+  <div class='card-header has-background-primary'>
+    <div class='card-header-title'>
+      <%= current_employee.email %>
+    </div>
+  </div>
+  <div class='card-content has-background-primary-light'>
+    First Name:
+    <div class='card-header-title'>
+      <%= current_employee.first_name %>
+    </div>
+    Last Name:
+    <div class='card-header-title'>
+      <%= current_employee.last_name %>
+    </div>
+    Avaiable Kudos:
+    <div class='card-header-title'>
+      <%= current_employee.number_of_available_kudos %>
+    </div>
+    Created at:
+    <div class='card-header-title'>
+      <%= current_employee.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+    </div>
+    <% if current_employee.orders.any?%>
+    Orders:
+    <div class='card-header-title'>
+      <%= render '/admins/orders/index' , orders: current_employee.orders.ordered_by_status%>
+    </div>
+  <% else %>
+    Employee hasn't made any order yet
+  <% end %>
+  </div>
+</div>
+<div class='columns is-vcentered mt-1 has-text-centered'>
+  <%= link_to 'Edit', edit_employee_path(current_employee), class:'column' %>
+  <%= link_to 'Back', :back, class:'column' %>
+</div>
