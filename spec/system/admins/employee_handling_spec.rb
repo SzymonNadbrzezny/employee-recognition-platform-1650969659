@@ -43,6 +43,14 @@ RSpec.describe 'Employee handling allows' do
     expect(page).to have_content 'test@test.com'
     expect(page).to have_content '5'
     expect(page).to have_content 'Employee was successfully updated.'
+    click_link 'Edit'
+    fill_in 'employee_first_name', with: 'Stefan'
+    fill_in 'employee_last_name', with: 'Grzegrzółka'
+    click_on 'Update'
+    expect(page).to have_content 'Employee was successfully updated.'
+    click_link 'Profile'
+    expect(page).to have_content 'Stefan'
+    expect(page).to have_content 'Grzegrzółka'
     visit root_path
 
     expect(page).to have_content 'Log in'

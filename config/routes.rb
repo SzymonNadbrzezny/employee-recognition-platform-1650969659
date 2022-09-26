@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       get '(category/:category)(/page/:page)', action: :index, on: :collection, as: ''
     end
     resources :orders, only: %i[new create]
-    resources :employees do
+    resources :employees, only: %i[show update edit] do
       member do
         resources :orders, only: :index
         get 'orders', to: 'order#index'

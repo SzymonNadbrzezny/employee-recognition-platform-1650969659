@@ -1,30 +1,30 @@
 <div class='card'>
   <div class='card-header has-background-primary'>
     <div class='card-header-title'>
-      <%= employee.email %>
+      <%= current_employee.email %>
     </div>
   </div>
   <div class='card-content has-background-primary-light'>
     First Name:
     <div class='card-header-title'>
-      <%= employee.first_name %>
+      <%= current_employee.first_name %>
     </div>
     Last Name:
     <div class='card-header-title'>
-      <%= employee.last_name %>
+      <%= current_employee.last_name %>
     </div>
     Avaiable Kudos:
     <div class='card-header-title'>
-      <%= employee.number_of_available_kudos %>
+      <%= current_employee.number_of_available_kudos %>
     </div>
     Created at:
     <div class='card-header-title'>
-      <%= employee.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+      <%= current_employee.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
     </div>
-    <% if employee.orders.any?%>
+    <% if current_employee.orders.any?%>
     Orders:
     <div class='card-header-title'>
-      <%= render '/admins/orders/index' , orders: employee.orders.ordered_by_status%>
+      <%= render '/admins/orders/index' , orders: current_employee.orders.ordered_by_status%>
     </div>
   <% else %>
     Employee hasn't made any order yet
@@ -32,6 +32,6 @@
   </div>
 </div>
 <div class='columns is-vcentered mt-1 has-text-centered'>
-  <%= link_to 'Edit', edit_admins_employee_path(employee), class:'column' %>
-  <%= link_to 'Back', admins_employees_path, class:'column' %>
+  <%= link_to 'Edit', edit_employee_path(current_employee), class:'column' %>
+  <%= link_to 'Back', :back, class:'column' %>
 </div>
