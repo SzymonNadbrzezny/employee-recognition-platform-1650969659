@@ -4,9 +4,7 @@
 #
 
 Rails.application.routes.draw do
-  devise_for :employees, path: 'employees', controllers: {
-    registrations: 'employees/registrations'
-  }
+  devise_for :employees, path: 'employees'
   devise_for :admins, path: 'admins', controllers: {
     sessions: 'admins/sessions'
   }
