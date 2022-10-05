@@ -13,17 +13,15 @@ class OrderForm
           address.last_used = Time.current
           address.save!
         else
-          address = Address.create!(employee: employee, street: street, city: city, postal_code: postal_code, last_used: Time.current)
+          address = Address.create!(employee: employee, street: street, city: city, postal_code: postal_code,
+                                    last_used: Time.current)
         end
       end
 
       Order.create!(reward: reward, address_snapshot: address, buyer: employee)
     end
     true
-  rescue ActiveRecord::StatementInvalid => e
-    errors.add(:base, e.message)
-    false
-  rescue ActiveRecord::RecordInvalid => e
+  rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordInvalid => e
     errors.add(:base, e.message)
     false
   end
