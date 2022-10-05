@@ -34,6 +34,12 @@
       <%= f.number_field :price, value: reward.price, class:'input', step: 0.01 %>
     </div>
   </div>
+  <div class="field">
+    <%= f.label :delivery_method, class:'label' %>
+    <div class="select is-primary">
+      <%= f.collection_select :delivery_method, Reward.delivery_methods, :first, :first, class: "select" %>
+    </div>
+  </div>
   <div class="file is-boxed is-centered">
     <label class="file-label">
       <%= f.file_field :picture, class:'file-input', accept: 'image/png,image/jpg' %>

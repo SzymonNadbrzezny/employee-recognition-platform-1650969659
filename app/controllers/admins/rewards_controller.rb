@@ -72,7 +72,7 @@ module Admins
     end
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price, :picture, :category_ids)
+      params.require(:reward).permit(:title, :description, :price, :picture, :category_ids, :delivery_method)
     end
   end
 end
