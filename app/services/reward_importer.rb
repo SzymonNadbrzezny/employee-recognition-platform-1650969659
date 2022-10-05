@@ -17,6 +17,7 @@ class RewardImporter < ApplicationService
           reward = Reward.find_or_initialize_by(title: reward_values[:title])
           reward.price = reward_values[:price]
           reward.description = reward_values[:description]
+          reward.delivery_method = reward_values[:delivery_method]
           category = Category.find_by(title: reward_values[:category])
           unless category
             result[:success?] = false

@@ -9,4 +9,6 @@ class Reward < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 1 }
   validates :categories, presence: true
   validates :picture, content_type: ['image/png', 'image/jpg']
+
+  enum delivery_method: { online: 'online', post: 'post' }, _default: 'online'
 end

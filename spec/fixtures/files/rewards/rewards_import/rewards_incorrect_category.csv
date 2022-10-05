@@ -1,2 +1,2 @@
-title, description, price, category
-reward_title1, banany, 3, ImportCategory3
+title, description, price, category, delivery_method
+reward_title1, banany, 3, ImportCategory3, post

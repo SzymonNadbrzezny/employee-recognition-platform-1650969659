@@ -15,23 +15,22 @@ module Employees
     end
 
     def new
-      order = Order.new
-      reward = Reward.find_by(id: params[:format])
-      order.reward = reward
-      render :new, locals: { order: order, reward: reward }
+      order_form = OrderForm.new
+      reward = Reward.find(params[:format])
+      render :new, locals: { order_form: order_form, reward: reward, employee: current_employee }
     end
 
     def create
-      @order = Order.new(order_params)
-      order.reward_price = order.reward.price
-      order.buyer = current_employee
-      if order.buyer.points < order.reward_price
+      order_form = OrderForm.new(order_form_params)
+      reward = Reward.find(order_form.reward_id)
+      order_form.employee = current_employee
+      if order_form.employee.points < reward.price
         redirect_to rewards_path, alert: 'Not enough points'
-      elsif order.save
-        order.buyer.decrement(:points, order.reward_price).save
+      elsif order_form.save
+        order_form.employee.decrement(:points, reward.price).save
         redirect_to rewards_path, notice: 'Order was successfully created.'
       else
-        render :new, locals: { order: order, reward: reward }
+        render :new, locals: { order_form: order_form, reward: reward, employee: current_employee }
       end
     end
 
@@ -41,8 +40,8 @@ module Employees
       @order ||= Order.find(params[:id])
     end
 
-    def order_params
-      params.require(:order).permit(:reward_id)
+    def order_form_params
+      params.require(:order_form).permit(:reward_id, :street, :city, :postal_code, :address_id)
     end
   end
 end

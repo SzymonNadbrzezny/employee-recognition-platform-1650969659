@@ -76,7 +76,7 @@ RSpec.describe 'Employee handling allows' do
     fill_in 'number_of_kudos_to_add', with: 5
     click_button 'Add Kudos'
     expect(page).to have_content 'Kudos were added successfuly.'
-    expect(page).to have_no_content old_kudos
+    expect(page).to have_no_content old_kudos, exact: true
     expect(page).to have_content old_kudos + 5
   end
 end

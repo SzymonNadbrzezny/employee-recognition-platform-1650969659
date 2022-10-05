@@ -69,6 +69,13 @@ RSpec.describe 'Rewards handling allows' do
     expect(page).to have_content 'Reward was successfully updated.'
   end
 
+  it 'Admin to change delivery method of Reward to post' do
+    visit admins_rewards_path
+    click_link 'Edit'
+    select 'post', from: 'reward_delivery_method', match: :smart
+    click_on 'Update Reward'
+  end
+
   context 'when Admin wants to import rewards' do
     reward_file_path = Rails.root.join('spec/fixtures/files/rewards/rewards_import/')
     let!(:import_category) { create(:category, title: 'ImportCategory') }
